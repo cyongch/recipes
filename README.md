@@ -8,11 +8,11 @@
 
 - 📱 移动端优先：手机浏览器 / 微信内打开即用
 - ➕ 手机直接加菜：表单录入（分类 / 时长 / 难度 / 食材 / 步骤 / 小贴士 / 来源链接）
-- 🖼️ 步骤配图：每一步可单独配图，封面支持上传（存 Supabase Storage）
+- 🖼️ 步骤配图：每一步可单独配图，封面支持上传（手机照片自动压缩后存入仓库，jsDelivr CDN 加速）
 - 🔍 按食材搜索：输入"鸡翅""番茄"就能找到能做的菜
 - 🏷️ 分类筛选 + "常做"标记置顶
 - ✅ 食材清单可逐项勾选，买菜时当清单用
-- ☁️ 多端同步：Supabase 云数据库，手机 / 电脑任一端增删改，其余端刷新即见
+- ☁️ 多端同步：GitHub 仓库即数据库，手机 / 电脑任一端增删改，其余端刷新即见
 - 🔌 双模式容灾：云端未配置或连接失败时自动回退本机模式（localStorage），数据不丢
 
 ## 技术形态
@@ -22,19 +22,24 @@
 
 ## 数据与后端
 
+数据不依赖第三方 BaaS——**GitHub 仓库本身就是数据库**：
+
+- 菜谱数据存 `data/recipes.json`，读写走 GitHub Contents API（`api.github.com` 国内可直连）
+- 图片压缩后提交进 `images/` 目录，展示走 jsDelivr CDN
+- 多端并发写入冲突时自动重读合并重试
+- 每次改动都有 Git 提交历史，天然版本备份
+
 | 组件 | 说明 |
 |---|---|
-| Supabase 项目 | 数据库表 `recipes` + 图片存储桶 `recipe-img`，建表 SQL 见 `supabase-setup.sql` |
-| config.js | 填入 `url` 和 `anonKey` 即启用云端（anon key 为前端公开设计，权限靠 RLS 控制） |
-| 本机模式 | 未配置云端时的兜底，新增数据存 localStorage（key: `recipe_added` / `recipe_overrides`） |
-| 保活任务 | `.github/workflows/keepalive.yml` 每 5 天 ping 一次 REST，防免费版闲置暂停（本地已备，待推） |
+| config.js | 填入 fine-grained token（仅授权本仓库 Contents 读写）即启用云端 |
+| 本机模式 | 未配置云端时的兜底，新增数据存 localStorage（key: `recipe_added` / `recipe_overrides`），配好后自动迁移上云 |
 
 ## 配置步骤（新环境复刻用）
 
-1. 注册 [supabase.com](https://supabase.com)，新建项目（区域选 Singapore）
-2. SQL Editor 中执行 `supabase-setup.sql` 全部内容
-3. Project Settings → API，把 Project URL 和 anon key 填入 `config.js`
-4. 推送到 GitHub 仓库并开启 Pages（Settings → Pages → main 分支 / 根目录）
+1. GitHub → Settings → Personal access tokens → Fine-grained tokens → 新建：
+   Repository access 选 "Only select repositories" 勾选本仓库；Permissions → Contents 设 "Read and write"
+2. 把 token 填入 `config.js` 的 `token` 字段
+3. 推送到 GitHub 并开启 Pages（Settings → Pages → main 分支 / 根目录）
 
 ## 数据结构
 
@@ -42,10 +47,10 @@
 
 ```js
 {
-  id: "hongshaorou",          // 云端模式为 uuid，本机模式为 "u" + 时间戳
+  id: "hongshaorou",          // GitHub 后端为 "r"+时间戳随机串，本机模式为 "u" 前缀
   name: "红烧肉",
   category: "家常菜",          // 自由文本，页面自动生成分类按钮
-  cover: "",                   // 网络链接 / images/xx.jpg / Storage URL
+  cover: "",                   // 网络链接 / images/xx.jpg / jsDelivr CDN URL
   time: "90分钟",
   difficulty: "中等",
   ingredients: [{ name: "五花肉", amount: "500g" }],

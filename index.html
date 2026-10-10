@@ -129,9 +129,10 @@
   var CATEGORY_ORDER = ['家常菜', '汤羹', '主食', '凉菜', '烘焙', '其他'];
   var PLACEHOLDER_COLORS = ['#f7c59f', '#a8d5ba', '#f2a6a6', '#b8c9e8', '#e8d3a8', '#d3b8e8'];
 
-  // ══════════ 数据层：云端(Supabase) / 本地 双模式 ══════════
-  var SB = window.SB_CONFIG || {};
-  var cloudOK = !!(SB.url && SB.anonKey);
+  // ══════════ 数据层：云端(GitHub 仓库) / 本地 双模式 ══════════
+  var GH = window.GH_CONFIG || {};
+  var GHAPI = 'https://api.github.com';
+  var cloudOK = !!(GH.owner && GH.repo && GH.token);
 
   var DB = {
     mode: cloudOK ? 'connecting' : 'local',  // cloud | local
@@ -149,70 +150,78 @@
     localStorage.setItem('recipe_overrides', JSON.stringify(localOverrides));
   }
 
-  function sbHeaders(extra) {
-    var h = {
-      'apikey': SB.anonKey,
-      'Authorization': 'Bearer ' + SB.anonKey,
+  // ── GitHub Contents API 读写 data/recipes.json ──
+  function ghHeaders() {
+    return {
+      'Authorization': 'Bearer ' + GH.token,
+      'Accept': 'application/vnd.github+json',
       'Content-Type': 'application/json'
     };
-    if (extra) { for (var k in extra) h[k] = extra[k]; }
-    return h;
   }
-  function sbBase() { return SB.url.replace(/\/+$/, '') + '/rest/v1/recipes'; }
-
-  function mapCloud(o) {
-    return {
-      id: o.id,
-      name: o.name || '未命名', category: o.category || '其他',
-      cover: o.cover || '', time: o.time || '', difficulty: o.difficulty || '',
-      ingredients: o.ingredients || [], steps: o.steps || [],
-      tips: o.tips || '', source: o.source || null,
-      favorite: !!o.favorite, date: o.date || ''
-    };
+  function ghUrl() {
+    return GHAPI + '/repos/' + GH.owner + '/' + GH.repo + '/contents/' + GH.dataPath + '?ref=' + GH.branch;
   }
-  function toCloudPayload(r) {
+  function b64ToUtf8(b64) {
+    var bin = atob(b64.replace(/\s/g, ''));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+  function utf8ToB64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+  function normalizeRecipe(r) {
     return {
-      name: r.name, category: r.category, cover: r.cover || '',
-      time: r.time || '', difficulty: r.difficulty || '',
+      id: r.id || ('r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6)),
+      name: r.name || '未命名', category: r.category || '其他',
+      cover: r.cover || '', time: r.time || '', difficulty: r.difficulty || '',
       ingredients: r.ingredients || [], steps: r.steps || [],
       tips: r.tips || '', source: r.source || null,
       favorite: !!r.favorite, date: r.date || ''
     };
   }
 
-  function cloudList() {
-    return fetch(sbBase() + '?select=*', { headers: sbHeaders() })
+  // 读取当前数据文件；文件不存在视为空库
+  function ghList() {
+    return fetch(ghUrl(), { headers: ghHeaders() })
       .then(function (res) {
+        if (res.status === 404) return { sha: null, recipes: [] };
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
       })
-      .then(function (rows) {
-        DB.cloudRecipes = rows.map(mapCloud);
-        DB.mode = 'cloud'; DB.banner = '';
+      .then(function (d) {
+        if (d.sha === null) return d;
+        return { sha: d.sha, recipes: JSON.parse(b64ToUtf8(d.content)) };
       });
   }
-  function cloudSave(r, objectId) {
-    var opts = objectId
-      ? { method: 'PATCH', url: sbBase() + '?id=eq.' + encodeURIComponent(objectId) }
-      : { method: 'POST', url: sbBase() };
-    return fetch(opts.url, {
-      method: opts.method,
-      headers: sbHeaders({ 'Prefer': 'return=representation' }),
-      body: JSON.stringify(toCloudPayload(r))
+  // 写入数据文件；sha 过期（他端先写入）时自动重读合并重试
+  function ghSaveFile(list, sha, message) {
+    return fetch(GHAPI + '/repos/' + GH.owner + '/' + GH.repo + '/contents/' + GH.dataPath, {
+      method: 'PUT',
+      headers: ghHeaders(),
+      body: JSON.stringify({
+        message: message || 'update recipes',
+        branch: GH.branch,
+        sha: sha || undefined,
+        content: utf8ToB64(JSON.stringify(list, null, 2))
+      })
     }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      if (!res.ok) {
+        var e = new Error('HTTP ' + res.status); e.status = res.status; throw e;
+      }
       return res.json();
-    }).then(function (rows) {
-      // 新增时用数据库生成的 uuid 回填
-      if (!objectId && rows && rows[0] && rows[0].id) r.id = rows[0].id;
-      return rows;
     });
   }
-  function cloudDelete(objectId) {
-    return fetch(sbBase() + '?id=eq.' + encodeURIComponent(objectId), {
-      method: 'DELETE', headers: sbHeaders()
-    }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+  // 变更操作统一入口：读 → 应用操作 → 写，冲突自动重试
+  function ghMutate(op, retries) {
+    retries = retries || 0;
+    return ghList().then(function (cur) {
+      var res = op(cur.recipes.slice(), cur.sha);
+      if (!res.changed) return null;
+      return ghSaveFile(res.list, cur.sha, res.message).catch(function (e) {
+        if ((e.status === 409 || e.status === 422) && retries < 2) return ghMutate(op, retries + 1);
+        throw e;
+      });
     });
   }
 
@@ -308,7 +317,7 @@
     chip.title = DB.banner ||
       (DB.mode === 'cloud'
         ? '数据已存云端，多台设备同步'
-        : '尚未配置云端（编辑 config.js 填入 Supabase URL 和 anonKey），当前数据只存在本机浏览器');
+        : '尚未配置云端（编辑 config.js 填入 GitHub fine-grained token），当前数据只存在本机浏览器');
   }
 
   // ══════════ 详情页 ══════════
@@ -369,9 +378,24 @@
   // silent=true 时不弹 toast（收藏等小操作）
   function saveRecipe(r, objectId, silent) {
     if (DB.mode === 'cloud') {
-      cloudSave(r, objectId).then(function () {
-        return cloudList();
+      var isNew = !objectId;
+      var norm = normalizeRecipe(r);
+      if (objectId) norm.id = objectId;
+      ghMutate(function (list) {
+        if (objectId) {
+          var found = false;
+          for (var i = 0; i < list.length; i++) {
+            if (list[i].id === objectId) { list[i] = norm; found = true; }
+          }
+          if (!found) list.push(norm);
+        } else {
+          list.push(norm);
+        }
+        return { changed: true, list: list, message: (isNew ? 'add' : 'update') + ' recipe: ' + norm.name };
       }).then(function () {
+        return ghList();
+      }).then(function (d) {
+        DB.cloudRecipes = d.recipes;
         if (!silent) toast('已保存，云端已同步');
         router();
       }).catch(function (e) {
@@ -396,7 +420,10 @@
   function deleteRecipe(id) {
     if (!confirm('确定删除这道菜？此操作不可撤销。')) return;
     if (DB.mode === 'cloud') {
-      cloudDelete(id).then(function () { return cloudList(); }).then(function () {
+      ghMutate(function (list) {
+        var next = list.filter(function (x) { return x.id !== id; });
+        return { changed: next.length !== list.length, list: next, message: 'delete recipe: ' + id };
+      }).then(function () {
         toast('已删除'); location.hash = '#/'; router();
       }).catch(function (e) { toast('云端删除失败：' + e.message); });
     } else {
@@ -428,28 +455,51 @@
     });
   }
 
-  // ── 图片上传：云端模式传 Supabase Storage，本机模式贴链接 ──
+  // ── 图片上传：压缩后提交进仓库 images/ 目录，展示走 jsDelivr CDN ──
+  function downscale(file, cb) {
+    var img = new Image();
+    var url = URL.createObjectURL(file);
+    img.onload = function () {
+      var max = 1000, scale = Math.min(1, max / Math.max(img.width, img.height));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(img.width * scale));
+      c.height = Math.max(1, Math.round(img.height * scale));
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(function (b) { URL.revokeObjectURL(url); cb(b); }, 'image/jpeg', 0.82);
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); cb(file); };
+    img.src = url;
+  }
   function uploadImage(file, cb) {
     if (DB.mode !== 'cloud') {
       var u = prompt('本机模式不支持直接上传，请输入图片链接\n（配置云端后即可直接传手机相册图片）：');
       if (u && u.trim()) cb(u.trim());
       return;
     }
-    var base = SB.url.replace(/\/+$/, '');
-    var ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
-    var name = 'img_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.' + ext;
-    toast('图片上传中…');
-    fetch(base + '/storage/v1/object/recipe-img/' + name, {
-      method: 'POST',
-      headers: { 'apikey': SB.anonKey, 'Authorization': 'Bearer ' + SB.anonKey, 'Content-Type': file.type || 'image/jpeg' },
-      body: file
-    }).then(function (res) {
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      return res.json();
-    }).then(function () {
-      cb(base + '/storage/v1/object/public/recipe-img/' + name);
-    }).catch(function (e) {
-      toast('图片上传失败：' + e.message);
+    downscale(file, function (blob) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var b64 = String(reader.result).split(',')[1];
+        var name = 'img_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.jpg';
+        toast('图片上传中…');
+        fetch(GHAPI + '/repos/' + GH.owner + '/' + GH.repo + '/contents/' + GH.imgDir + '/' + name, {
+          method: 'PUT',
+          headers: ghHeaders(),
+          body: JSON.stringify({
+            message: 'img: ' + name,
+            branch: GH.branch,
+            content: b64
+          })
+        }).then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        }).then(function () {
+          cb('https://cdn.jsdelivr.net/gh/' + GH.owner + '/' + GH.repo + '@' + GH.branch + '/' + GH.imgDir + '/' + name);
+        }).catch(function (e) {
+          toast('图片上传失败：' + e.message);
+        });
+      };
+      reader.readAsDataURL(blob);
     });
   }
 
@@ -628,26 +678,43 @@
   window.addEventListener('hashchange', router);
 
   // ══════════ 启动 ══════════
-  function importSeed(i) {
-    if (i >= RECIPES.length) {
-      return cloudList().then(function () {
-        toast('已导入 ' + RECIPES.length + ' 道示例菜到云端');
-        router();
-      });
-    }
-    var r = RECIPES[i];
-    return cloudSave(r, null).then(function () { return importSeed(i + 1); });
+  function refreshCloud() {
+    return ghList().then(function (d) {
+      DB.cloudRecipes = d.recipes;
+      DB.mode = 'cloud'; DB.banner = '';
+    });
   }
 
   function boot() {
     if (!cloudOK) { DB.mode = 'local'; router(); return; }
     DB.mode = 'connecting'; renderSyncChip();
-    cloudList().then(function () {
-      if (DB.mode === 'cloud' && DB.cloudRecipes.length === 0 && RECIPES.length > 0) {
-        return importSeed(0);   // 云端为空 → 自动导入内置示例
+    ghList().then(function (cur) {
+      var list = cur.recipes;
+      var tasks = [];
+      // 数据文件为空 → 导入内置示例菜
+      if (list.length === 0 && RECIPES.length > 0) {
+        list = RECIPES.slice();
+        tasks.push(ghSaveFile(list, cur.sha, 'init: import seed recipes'));
       }
-      router();
-    }).catch(function (e) {
+      // 本机模式期间攒下的菜 → 自动迁移上云
+      if (localAdded.length > 0) {
+        var ids = {};
+        list.forEach(function (x) { ids[x.id] = 1; });
+        localAdded.forEach(function (x) {
+          if (!ids[x.id]) { list.push(normalizeRecipe(x)); }
+        });
+        tasks.push(ghSaveFile(list, cur.sha, 'migrate local recipes'));
+        localAdded = [];
+        persistLocal();
+      }
+      if (tasks.length) {
+        return Promise.all(tasks).then(function () {
+          toast('云端数据初始化完成');
+          return refreshCloud();
+        });
+      }
+      return refreshCloud();
+    }).then(router).catch(function (e) {
       DB.mode = 'local';
       DB.banner = '云端连接失败（' + e.message + '），当前为本地模式';
       router();
