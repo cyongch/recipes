@@ -1,0 +1,482 @@
+/* ============================================================
+ * 小池的食谱 —— 移动端优先，浅色主题
+ * ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #faf7f2;
+  --card: #ffffff;
+  --text: #2d2a26;
+  --text-2: #8a837a;
+  --primary: #e07a3f;
+  --primary-light: #fdf0e7;
+  --border: #eee7dd;
+  --radius: 14px;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+/* 全局兜底：hidden 属性必须生效，优先级高于一切 display 规则 */
+[hidden] { display: none !important; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.app { max-width: 720px; margin: 0 auto; padding: 0 16px 48px; }
+
+/* ── 顶栏 ── */
+.topbar {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 28px 0 16px;
+}
+.topbar h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+.count { font-size: 13px; color: var(--text-2); }
+
+/* ── 搜索框 ── */
+.search-box {
+  position: relative;
+  margin-bottom: 14px;
+}
+.search-icon {
+  position: absolute; left: 13px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-2); pointer-events: none;
+}
+#search-input {
+  width: 100%;
+  padding: 12px 40px 12px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+}
+#search-input:focus { border-color: var(--primary); }
+#search-input::placeholder { color: #b5ada2; }
+.search-clear {
+  position: absolute; right: 8px; top: 50%;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  border: none; border-radius: 50%;
+  background: var(--border); color: var(--text-2);
+  font-size: 16px; cursor: pointer; line-height: 1;
+}
+
+/* ── 分类 chips ── */
+.chips {
+  display: flex; gap: 8px;
+  overflow-x: auto;
+  padding: 2px 0 14px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  padding: 6px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text-2);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* ── 卡片网格 ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (min-width: 560px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.card {
+  text-decoration: none;
+  color: inherit;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform .15s, box-shadow .15s;
+}
+.card:active { transform: scale(.97); }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,.07); }
+}
+
+.card-cover-wrap { position: relative; }
+.card-cover {
+  display: block;
+  width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.card-cover.placeholder {
+  display: flex; align-items: center; justify-content: center;
+}
+.card-cover.placeholder span {
+  font-size: 34px; font-weight: 700;
+  color: rgba(255,255,255,.85);
+}
+.fav-badge {
+  position: absolute; left: 8px; top: 8px;
+  padding: 2px 9px;
+  background: rgba(0,0,0,.45);
+  color: #ffd67e;
+  font-size: 11px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+.card-body { padding: 10px 12px 12px; }
+.card-name {
+  font-size: 15px; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-meta {
+  display: flex; gap: 6px;
+  margin-top: 4px;
+  font-size: 11.5px; color: var(--text-2);
+  white-space: nowrap; overflow: hidden;
+}
+
+/* ── 空状态 ── */
+.empty { text-align: center; padding: 64px 0; color: var(--text-2); }
+.empty-emoji { font-size: 44px; margin-bottom: 10px; }
+
+/* ══════════ 详情页 ══════════ */
+.detail-bar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0;
+  background: var(--bg);
+}
+.back-btn {
+  display: flex; align-items: center; gap: 2px;
+  border: none; background: none;
+  color: var(--text);
+  font-size: 15px; cursor: pointer;
+  padding: 6px 8px 6px 0;
+}
+.fav-btn {
+  border: none; background: none; cursor: pointer;
+  padding: 8px;
+}
+.fav-star { stroke: #999; transition: all .2s; }
+
+.detail-cover-wrap { border-radius: var(--radius); overflow: hidden; margin-bottom: 18px; }
+
+.detail-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+.detail-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.tag {
+  padding: 3px 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 999px;
+  font-size: 12.5px;
+}
+
+.section { margin-bottom: 26px; }
+.section h3 {
+  font-size: 16px; font-weight: 700;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 3.5px solid var(--primary);
+  line-height: 1.3;
+}
+
+/* 食材清单 */
+.ingredients { list-style: none; }
+.ingredients li {
+  border-bottom: 1px dashed var(--border);
+}
+.ingredients label {
+  display: flex; align-items: center;
+  padding: 9px 2px;
+  cursor: pointer;
+  font-size: 15px;
+}
+.ingredients input { width: 17px; height: 17px; accent-color: var(--primary); margin-right: 10px; }
+.ing-name { flex: 1; }
+.ingredients input:checked + .ing-name { color: var(--text-2); text-decoration: line-through; }
+.ing-amount { color: var(--text-2); font-size: 13.5px; }
+
+/* 步骤 */
+.steps { list-style: none; }
+.steps li {
+  display: flex; gap: 12px;
+  margin-bottom: 16px;
+}
+.step-no {
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 2px;
+}
+.steps p { font-size: 15px; }
+
+/* 小贴士 */
+.tips-box {
+  background: #fff8e8;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.tips-box h3 { border-left-color: #f5a623; margin-bottom: 6px; }
+.tips-box p { font-size: 14.5px; color: #7a6a4a; }
+
+.source-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--primary);
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--primary);
+}
+.recorded {
+  font-size: 12.5px; color: #c2bab0;
+  text-align: center;
+  padding-top: 8px;
+}
+
+/* ══════════ 同步状态角标 ══════════ */
+.sync-chip {
+  margin-left: auto;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--text-2);
+  cursor: pointer;
+  padding: 4px 6px;
+}
+.sync-chip.ok { color: #3e9b5f; }
+.sync-chip.off { color: #c2bab0; }
+
+/* ══════════ 详情页操作按钮 ══════════ */
+.detail-actions { display: flex; gap: 4px; align-items: center; }
+.icon-btn {
+  border: none; background: none;
+  font-size: 17px; cursor: pointer;
+  padding: 6px;
+}
+
+/* ══════════ 悬浮加菜按钮 ══════════ */
+.fab {
+  position: fixed;
+  right: max(18px, calc(50vw - 340px));
+  bottom: 28px;
+  width: 54px; height: 54px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(224,122,63,.4);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .15s;
+  z-index: 50;
+}
+.fab:active { transform: scale(.92); }
+
+/* ══════════ 加菜/编辑弹层 ══════════ */
+.modal-mask {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 100;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+@media (min-width: 560px) {
+  .modal-mask { align-items: center; }
+}
+.modal {
+  width: 100%; max-width: 560px;
+  max-height: 88vh;
+  background: var(--card);
+  border-radius: 20px 20px 0 0;
+  display: flex; flex-direction: column;
+}
+@media (min-width: 560px) {
+  .modal { border-radius: 20px; }
+}
+.modal-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 18px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-head h2 { font-size: 18px; }
+.modal-close {
+  border: none; background: var(--border);
+  width: 30px; height: 30px; border-radius: 50%;
+  font-size: 18px; color: var(--text-2); cursor: pointer;
+  line-height: 1;
+}
+.modal-body {
+  overflow-y: auto;
+  padding: 14px 18px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.modal-foot {
+  display: flex; gap: 10px;
+  padding: 12px 18px calc(14px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+}
+
+.field { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.field > span { font-size: 13px; color: var(--text-2); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text);
+  background: #fffdf9;
+  outline: none;
+}
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--primary); }
+.field textarea { resize: vertical; }
+.field-row { display: flex; gap: 10px; }
+
+.ing-row {
+  display: flex; gap: 6px;
+  margin-bottom: 7px;
+}
+.ing-row .ing-r-name { flex: 1.4; }
+.ing-row .ing-r-amount { flex: 1; }
+.ing-row input {
+  padding: 8px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fffdf9;
+  outline: none;
+  min-width: 0;
+}
+.ing-row input:focus { border-color: var(--primary); }
+.ing-r-del {
+  flex-shrink: 0;
+  width: 34px;
+  border: none; background: var(--border);
+  border-radius: 10px;
+  color: var(--text-2); font-size: 16px; cursor: pointer;
+}
+.mini-btn {
+  border: 1.5px dashed var(--border);
+  background: none;
+  color: var(--text-2);
+  border-radius: 10px;
+  padding: 7px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+.mini-btn:active { background: var(--primary-light); }
+
+/* 封面行：输入框 + 📎 */
+.cover-row { display: flex; gap: 6px; align-items: center; }
+.cover-row input {
+  flex: 1; min-width: 0;
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 15px; font-family: inherit;
+  background: #fffdf9; outline: none;
+}
+.cover-row input:focus { border-color: var(--primary); }
+.attach-btn { flex-shrink: 0; padding: 8px 12px; }
+
+/* 步骤行：文字 + 缩略图 + 📎 + 删除 */
+.step-row {
+  display: flex; gap: 6px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+.step-row-main { flex: 1; min-width: 0; display: flex; gap: 6px; align-items: center; }
+.step-row-main input {
+  flex: 1; min-width: 0;
+  padding: 8px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px; font-family: inherit;
+  background: #fffdf9; outline: none;
+}
+.step-row-main input:focus { border-color: var(--primary); }
+.step-thumb {
+  flex-shrink: 0;
+  width: 36px; height: 36px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.step-row-btns { display: flex; gap: 4px; flex-shrink: 0; }
+.step-attach, .step-row-btns .step-r-del {
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--border);
+  background: #fffdf9;
+  border-radius: 10px;
+  font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+.step-row-btns .step-r-del { color: var(--text-2); }
+.step-attach:active, .step-row-btns .step-r-del:active { background: var(--primary-light); }
+
+/* 详情页步骤配图 */
+.step-body { flex: 1; min-width: 0; }
+.step-img {
+  display: block;
+  width: 100%; max-width: 320px;
+  border-radius: 10px;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+}
+
+.check-line {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14.5px;
+  cursor: pointer;
+}
+.check-line input { width: 17px; height: 17px; accent-color: var(--primary); }
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.primary { background: var(--primary); color: #fff; }
+.btn.ghost { background: var(--border); color: var(--text-2); }
+
+/* ══════════ 轻提示 ══════════ */
+.toast {
+  position: fixed;
+  left: 50%; bottom: 96px;
+  transform: translateX(-50%);
+  background: rgba(45,42,38,.88);
+  color: #fff;
+  font-size: 13.5px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  z-index: 200;
+  max-width: 80vw;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}

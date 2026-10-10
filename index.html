@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>小池的食谱</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <!-- ═══ 列表页 ═══ -->
+  <div id="page-list">
+    <header class="topbar">
+      <h1>食谱</h1>
+      <span class="count" id="stat-count"></span>
+      <button class="sync-chip" id="sync-chip" title="点击查看说明"></button>
+    </header>
+
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search-input" type="text" placeholder="搜菜名或食材，如：鸡翅、番茄…" autocomplete="off">
+      <button id="search-clear" class="search-clear" hidden>×</button>
+    </div>
+
+    <div class="chips" id="chips"></div>
+
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty" hidden>
+      <div class="empty-emoji">🍳</div>
+      <p>没有找到匹配的食谱</p>
+    </div>
+  </div>
+
+  <!-- ═══ 详情页 ═══ -->
+  <div id="page-detail" hidden>
+    <header class="detail-bar">
+      <button class="back-btn" id="btn-back">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        返回
+      </button>
+      <div class="detail-actions">
+        <button class="icon-btn" id="btn-edit" title="编辑">✏️</button>
+        <button class="icon-btn" id="btn-del" title="删除">🗑️</button>
+        <button class="icon-btn" id="btn-fav" title="标记常做">
+          <svg viewBox="0 0 24 24" width="20" height="20" class="fav-star"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.3l-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9z"/></svg>
+        </button>
+      </div>
+    </header>
+    <article class="detail" id="detail"></article>
+  </div>
+</div>
+
+<!-- ═══ 加菜/编辑 弹层 ═══ -->
+<div class="modal-mask" id="modal" hidden>
+  <div class="modal">
+    <header class="modal-head">
+      <h2 id="modal-title">加一道菜</h2>
+      <button class="modal-close" id="modal-close">×</button>
+    </header>
+    <div class="modal-body">
+      <label class="field"><span>菜名 *</span>
+        <input id="f-name" type="text" placeholder="如：粉蒸肉" maxlength="30">
+      </label>
+      <div class="field-row">
+        <label class="field"><span>分类</span>
+          <input id="f-category" list="cat-list" placeholder="家常菜" maxlength="10">
+          <datalist id="cat-list">
+            <option>家常菜</option><option>汤羹</option><option>主食</option>
+            <option>凉菜</option><option>烘焙</option><option>其他</option>
+          </datalist>
+        </label>
+        <label class="field"><span>时长</span>
+          <input id="f-time" type="text" placeholder="30分钟" maxlength="12">
+        </label>
+        <label class="field"><span>难度</span>
+          <select id="f-difficulty">
+            <option value="">不填</option>
+            <option>简单</option><option>中等</option><option>进阶</option>
+          </select>
+        </label>
+      </div>
+      <div class="field"><span>封面图</span>
+        <div class="cover-row">
+          <input id="f-cover" type="text" placeholder="可留空，点 📎 上传或贴链接">
+          <button type="button" class="mini-btn attach-btn" id="btn-cover-img" title="上传封面图">📎</button>
+        </div>
+      </div>
+
+      <div class="field"><span>食材清单</span>
+        <div id="ing-rows"></div>
+        <button type="button" class="mini-btn" id="btn-add-ing">＋ 加一种食材</button>
+      </div>
+
+      <div class="field"><span>做法步骤（每步可配图）</span>
+        <div id="step-rows"></div>
+        <button type="button" class="mini-btn" id="btn-add-step">＋ 加一步</button>
+      </div>
+      <label class="field"><span>小贴士</span>
+        <textarea id="f-tips" rows="2" placeholder="可留空"></textarea>
+      </label>
+      <div class="field-row">
+        <label class="field"><span>来源名称</span>
+          <input id="f-src-name" type="text" placeholder="可留空">
+        </label>
+        <label class="field"><span>来源链接</span>
+          <input id="f-src-url" type="text" placeholder="可留空">
+        </label>
+      </div>
+      <label class="check-line"><input type="checkbox" id="f-favorite"> 标记为「常做」</label>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn ghost" id="btn-cancel">取消</button>
+      <button class="btn primary" id="btn-save">保存</button>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══ 轻提示 ═══ -->
+<div class="toast" id="toast" hidden></div>
+
+<script src="config.js"></script>
+<script src="recipes.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (sel) { return document.querySelector(sel); };
+  var CATEGORY_ORDER = ['家常菜', '汤羹', '主食', '凉菜', '烘焙', '其他'];
+  var PLACEHOLDER_COLORS = ['#f7c59f', '#a8d5ba', '#f2a6a6', '#b8c9e8', '#e8d3a8', '#d3b8e8'];
+
+  // ══════════ 数据层：云端(Supabase) / 本地 双模式 ══════════
+  var SB = window.SB_CONFIG || {};
+  var cloudOK = !!(SB.url && SB.anonKey);
+
+  var DB = {
+    mode: cloudOK ? 'connecting' : 'local',  // cloud | local
+    cloudRecipes: [],                         // 云端拉下来的菜
+    banner: ''
+  };
+
+  // 本地模式的持久化：新增的菜 + 对种子菜的修改/删除(墓碑)
+  function lsGet(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } }
+  var localAdded = lsGet('recipe_added', []);       // 本机新增
+  var localOverrides = lsGet('recipe_overrides', {}); // id → 修改后对象 / null=已删除
+
+  function persistLocal() {
+    localStorage.setItem('recipe_added', JSON.stringify(localAdded));
+    localStorage.setItem('recipe_overrides', JSON.stringify(localOverrides));
+  }
+
+  function sbHeaders(extra) {
+    var h = {
+      'apikey': SB.anonKey,
+      'Authorization': 'Bearer ' + SB.anonKey,
+      'Content-Type': 'application/json'
+    };
+    if (extra) { for (var k in extra) h[k] = extra[k]; }
+    return h;
+  }
+  function sbBase() { return SB.url.replace(/\/+$/, '') + '/rest/v1/recipes'; }
+
+  function mapCloud(o) {
+    return {
+      id: o.id,
+      name: o.name || '未命名', category: o.category || '其他',
+      cover: o.cover || '', time: o.time || '', difficulty: o.difficulty || '',
+      ingredients: o.ingredients || [], steps: o.steps || [],
+      tips: o.tips || '', source: o.source || null,
+      favorite: !!o.favorite, date: o.date || ''
+    };
+  }
+  function toCloudPayload(r) {
+    return {
+      name: r.name, category: r.category, cover: r.cover || '',
+      time: r.time || '', difficulty: r.difficulty || '',
+      ingredients: r.ingredients || [], steps: r.steps || [],
+      tips: r.tips || '', source: r.source || null,
+      favorite: !!r.favorite, date: r.date || ''
+    };
+  }
+
+  function cloudList() {
+    return fetch(sbBase() + '?select=*', { headers: sbHeaders() })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (rows) {
+        DB.cloudRecipes = rows.map(mapCloud);
+        DB.mode = 'cloud'; DB.banner = '';
+      });
+  }
+  function cloudSave(r, objectId) {
+    var opts = objectId
+      ? { method: 'PATCH', url: sbBase() + '?id=eq.' + encodeURIComponent(objectId) }
+      : { method: 'POST', url: sbBase() };
+    return fetch(opts.url, {
+      method: opts.method,
+      headers: sbHeaders({ 'Prefer': 'return=representation' }),
+      body: JSON.stringify(toCloudPayload(r))
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).then(function (rows) {
+      // 新增时用数据库生成的 uuid 回填
+      if (!objectId && rows && rows[0] && rows[0].id) r.id = rows[0].id;
+      return rows;
+    });
+  }
+  function cloudDelete(objectId) {
+    return fetch(sbBase() + '?id=eq.' + encodeURIComponent(objectId), {
+      method: 'DELETE', headers: sbHeaders()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+    });
+  }
+
+  // 当前应展示的全部菜谱
+  function getRecipes() {
+    if (DB.mode === 'cloud') return DB.cloudRecipes;
+    var list = [];
+    RECIPES.forEach(function (r) {
+      if (!(r.id in localOverrides)) list.push(r);
+      else if (localOverrides[r.id] !== null) list.push(localOverrides[r.id]);
+    });
+    localAdded.forEach(function (r) { if (localOverrides[r.id] !== null) list.push(r); });
+    return list;
+  }
+  function findRecipe(id) {
+    var hit = null;
+    getRecipes().forEach(function (r) { if (r.id === id) hit = r; });
+    return hit;
+  }
+
+  // ══════════ 通用工具 ══════════
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  var toastTimer = null;
+  function toast(msg) {
+    var t = $('#toast');
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.hidden = true; }, 2200);
+  }
+
+  // ══════════ 列表页渲染 ══════════
+  var state = { keyword: '', category: '全部' };
+
+  function buildChips() {
+    var cats = [];
+    getRecipes().forEach(function (r) {
+      if (cats.indexOf(r.category) === -1) cats.push(r.category);
+    });
+    cats.sort(function (a, b) {
+      var ia = CATEGORY_ORDER.indexOf(a), ib = CATEGORY_ORDER.indexOf(b);
+      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+    });
+    $('#chips').innerHTML = ['全部'].concat(cats).map(function (c) {
+      return '<button class="chip' + (c === state.category ? ' active' : '') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+    }).join('');
+  }
+
+  function filtered() {
+    var kw = state.keyword.trim().toLowerCase();
+    return getRecipes().filter(function (r) {
+      if (state.category !== '全部' && r.category !== state.category) return false;
+      if (!kw) return true;
+      var hay = (r.name + ' ' + r.category).toLowerCase();
+      (r.ingredients || []).forEach(function (ing) { hay += ' ' + (ing.name || '').toLowerCase(); });
+      return hay.indexOf(kw) !== -1;
+    }).sort(function (a, b) { return (b.favorite === true) - (a.favorite === true); });
+  }
+
+  function coverHtml(r) {
+    var color = PLACEHOLDER_COLORS[(r.name || '?').charCodeAt(0) % PLACEHOLDER_COLORS.length];
+    if (r.cover) {
+      return '<img class="card-cover" src="' + esc(r.cover) + '" alt="' + esc(r.name) + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+             '<div class="card-cover placeholder" style="background:' + color + ';display:none"><span>' + esc(r.name.charAt(0)) + '</span></div>';
+    }
+    return '<div class="card-cover placeholder" style="background:' + color + '"><span>' + esc(r.name.charAt(0)) + '</span></div>';
+  }
+
+  function renderGrid() {
+    var list = filtered();
+    $('#stat-count').textContent = '共 ' + getRecipes().length + ' 道';
+    $('#empty').hidden = list.length > 0;
+    $('#grid').innerHTML = list.map(function (r) {
+      return '<a class="card" href="#/recipe/' + encodeURIComponent(r.id) + '">' +
+        '<div class="card-cover-wrap">' + coverHtml(r) +
+        (r.favorite ? '<span class="fav-badge">常做</span>' : '') + '</div>' +
+        '<div class="card-body">' +
+          '<div class="card-name">' + esc(r.name) + '</div>' +
+          '<div class="card-meta"><span>' + esc(r.category) + '</span><span>' + esc(r.time) + '</span><span>' + esc(r.difficulty) + '</span></div>' +
+        '</div></a>';
+    }).join('');
+  }
+
+  // 同步状态角标
+  function renderSyncChip() {
+    var chip = $('#sync-chip');
+    if (DB.mode === 'cloud') { chip.textContent = '☁ 已同步'; chip.className = 'sync-chip ok'; }
+    else if (DB.mode === 'connecting') { chip.textContent = '☁ 连接中…'; chip.className = 'sync-chip'; }
+    else { chip.textContent = '📴 仅本机'; chip.className = 'sync-chip off'; }
+    chip.title = DB.banner ||
+      (DB.mode === 'cloud'
+        ? '数据已存云端，多台设备同步'
+        : '尚未配置云端（编辑 config.js 填入 Supabase URL 和 anonKey），当前数据只存在本机浏览器');
+  }
+
+  // ══════════ 详情页 ══════════
+  var currentDetail = null;
+
+  function renderDetail(id) {
+    var r = findRecipe(id);
+    if (!r) { location.hash = '#/'; return; }
+    currentDetail = r;
+
+    document.title = r.name + ' - 小池的食谱';
+    $('#detail').innerHTML =
+      '<div class="detail-cover-wrap">' + coverHtml(r) + '</div>' +
+      '<h2 class="detail-title">' + esc(r.name) + '</h2>' +
+      '<div class="detail-meta">' +
+        '<span class="tag">' + esc(r.category) + '</span>' +
+        (r.time ? '<span class="tag">⏱ ' + esc(r.time) + '</span>' : '') +
+        (r.difficulty ? '<span class="tag">' + esc(r.difficulty) + '</span>' : '') +
+      '</div>' +
+      '<section class="section"><h3>食材清单</h3><ul class="ingredients">' +
+        (r.ingredients || []).map(function (ing) {
+          return '<li><label><input type="checkbox"><span class="ing-name">' + esc(ing.name) + '</span><span class="ing-amount">' + esc(ing.amount) + '</span></label></li>';
+        }).join('') +
+      '</ul></section>' +
+      '<section class="section"><h3>做法步骤</h3><ol class="steps">' +
+        normalizeSteps(r.steps).map(function (s, i) {
+          return '<li><span class="step-no">' + (i + 1) + '</span><div class="step-body">' +
+            '<p>' + esc(s.text) + '</p>' +
+            (s.img ? '<img class="step-img" src="' + esc(s.img) + '" loading="lazy" alt="第' + (i + 1) + '步配图">' : '') +
+            '</div></li>';
+        }).join('') +
+      '</ol></section>' +
+      (r.tips ? '<section class="section tips-box"><h3>小贴士</h3><p>' + esc(r.tips) + '</p></section>' : '') +
+      (r.source && r.source.url
+        ? '<a class="source-link" href="' + esc(r.source.url) + '" target="_blank" rel="noopener">来源：' + esc(r.source.name || '原文链接') + ' ↗</a>'
+        : '') +
+      '<p class="recorded">收录于 ' + esc(r.date) + '</p>';
+
+    updateFavBtn(r);
+  }
+
+  function updateFavBtn(r) {
+    var star = $('#btn-fav .fav-star');
+    star.style.fill = r.favorite ? '#f5a623' : 'none';
+    star.style.stroke = r.favorite ? '#f5a623' : '#999';
+  }
+
+  function toggleFav() {
+    if (!currentDetail) return;
+    var r = currentDetail;
+    r.favorite = !r.favorite;
+    updateFavBtn(r);
+    saveRecipe(r, r.id, true);  // 静默保存
+    buildChips(); renderGrid();
+  }
+
+  // ══════════ 保存/删除（模式自适应） ══════════
+  // silent=true 时不弹 toast（收藏等小操作）
+  function saveRecipe(r, objectId, silent) {
+    if (DB.mode === 'cloud') {
+      cloudSave(r, objectId).then(function () {
+        return cloudList();
+      }).then(function () {
+        if (!silent) toast('已保存，云端已同步');
+        router();
+      }).catch(function (e) {
+        toast('云端保存失败：' + e.message);
+      });
+    } else {
+      if (objectId) {
+        // 修改：优先改本机新增列表里的，否则落到 overrides
+        var hit = false;
+        localAdded.forEach(function (x) { if (x.id === objectId) { localOverrides[objectId] = r; hit = true; } });
+        if (!hit) localOverrides[objectId] = r;
+      } else {
+        r.id = 'u' + Date.now().toString(36);
+        localAdded.push(r);
+      }
+      persistLocal();
+      if (!silent) toast('已保存（仅本机，配置云端后可同步）');
+      router();
+    }
+  }
+
+  function deleteRecipe(id) {
+    if (!confirm('确定删除这道菜？此操作不可撤销。')) return;
+    if (DB.mode === 'cloud') {
+      cloudDelete(id).then(function () { return cloudList(); }).then(function () {
+        toast('已删除'); location.hash = '#/'; router();
+      }).catch(function (e) { toast('云端删除失败：' + e.message); });
+    } else {
+      localOverrides[id] = null;
+      persistLocal();
+      toast('已删除（仅本机）'); location.hash = '#/'; router();
+    }
+  }
+
+  // ══════════ 加菜 / 编辑弹层 ══════════
+  var editingId = null;  // null=新增
+
+  function ingRow(name, amount) {
+    var div = document.createElement('div');
+    div.className = 'ing-row';
+    div.innerHTML =
+      '<input type="text" class="ing-r-name" placeholder="食材" value="' + esc(name || '') + '">' +
+      '<input type="text" class="ing-r-amount" placeholder="用量" value="' + esc(amount || '') + '">' +
+      '<button type="button" class="ing-r-del" title="删除">×</button>';
+    div.querySelector('.ing-r-del').onclick = function () { div.remove(); };
+    return div;
+  }
+
+  // ── 步骤格式兼容：老数据是纯字符串，新数据支持 {text, img} ──
+  function normalizeSteps(steps) {
+    return (steps || []).map(function (s) {
+      if (typeof s === 'string') return { text: s, img: '' };
+      return { text: s.text || '', img: s.img || '' };
+    });
+  }
+
+  // ── 图片上传：云端模式传 Supabase Storage，本机模式贴链接 ──
+  function uploadImage(file, cb) {
+    if (DB.mode !== 'cloud') {
+      var u = prompt('本机模式不支持直接上传，请输入图片链接\n（配置云端后即可直接传手机相册图片）：');
+      if (u && u.trim()) cb(u.trim());
+      return;
+    }
+    var base = SB.url.replace(/\/+$/, '');
+    var ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    var name = 'img_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8) + '.' + ext;
+    toast('图片上传中…');
+    fetch(base + '/storage/v1/object/recipe-img/' + name, {
+      method: 'POST',
+      headers: { 'apikey': SB.anonKey, 'Authorization': 'Bearer ' + SB.anonKey, 'Content-Type': file.type || 'image/jpeg' },
+      body: file
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    }).then(function () {
+      cb(base + '/storage/v1/object/public/recipe-img/' + name);
+    }).catch(function (e) {
+      toast('图片上传失败：' + e.message);
+    });
+  }
+
+  // 通用选图入口：云端模式弹文件选择器，本机模式贴链接
+  function pickImage(cb) {
+    if (DB.mode === 'cloud') {
+      var fi = document.createElement('input');
+      fi.type = 'file';
+      fi.accept = 'image/*';
+      fi.onchange = function () {
+        if (fi.files && fi.files[0]) uploadImage(fi.files[0], cb);
+      };
+      fi.click();
+    } else {
+      var u = prompt('本机模式请输入图片链接（配置云端后可直接上传图片）：');
+      if (u && u.trim()) cb(u.trim());
+    }
+  }
+
+  function setThumb(row, url) {
+    row.dataset.img = url || '';
+    var th = row.querySelector('.step-thumb');
+    th.src = url; th.hidden = !url;
+  }
+
+  function stepRow(text, img) {
+    var div = document.createElement('div');
+    div.className = 'step-row';
+    div.dataset.img = img || '';
+    div.innerHTML =
+      '<div class="step-row-main">' +
+        '<input type="text" class="step-r-text" placeholder="这一步怎么做…" value="' + esc(text || '') + '">' +
+        '<img class="step-thumb" ' + (img ? 'src="' + esc(img) + '"' : 'hidden') + ' alt="步骤图">' +
+      '</div>' +
+      '<div class="step-row-btns">' +
+        '<button type="button" class="step-attach" title="步骤配图">📎</button>' +
+        '<button type="button" class="step-r-del" title="删除此步">×</button>' +
+      '</div>';
+    div.querySelector('.step-attach').onclick = function () {
+      pickImage(function (url) { setThumb(div, url); toast('步骤图已就绪'); });
+    };
+    div.querySelector('.step-r-del').onclick = function () { div.remove(); };
+    return div;
+  }
+
+  function openModal(recipe) {
+    editingId = recipe ? recipe.id : null;
+    $('#modal-title').textContent = recipe ? '编辑：' + recipe.name : '加一道菜';
+    $('#f-name').value = recipe ? recipe.name : '';
+    $('#f-category').value = recipe ? recipe.category : '';
+    $('#f-time').value = recipe ? recipe.time : '';
+    $('#f-difficulty').value = recipe ? recipe.difficulty : '';
+    $('#f-cover').value = recipe ? recipe.cover : '';
+    var rows = $('#ing-rows');
+    rows.innerHTML = '';
+    var ings = (recipe && recipe.ingredients && recipe.ingredients.length) ? recipe.ingredients : [{ name: '', amount: '' }];
+    ings.forEach(function (ing) { rows.appendChild(ingRow(ing.name, ing.amount)); });
+    var srows = $('#step-rows');
+    srows.innerHTML = '';
+    var stps = (recipe && recipe.steps && recipe.steps.length) ? normalizeSteps(recipe.steps) : [{ text: '', img: '' }];
+    stps.forEach(function (s) { srows.appendChild(stepRow(s.text, s.img)); });
+    $('#f-tips').value = recipe ? recipe.tips : '';
+    $('#f-src-name').value = (recipe && recipe.source) ? recipe.source.name : '';
+    $('#f-src-url').value = (recipe && recipe.source) ? recipe.source.url : '';
+    $('#f-favorite').checked = recipe ? !!recipe.favorite : false;
+    $('#modal').hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { $('#f-name').focus(); }, 100);
+  }
+  function closeModal() {
+    $('#modal').hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function submitForm() {
+    var name = $('#f-name').value.trim();
+    if (!name) { toast('请填写菜名'); $('#f-name').focus(); return; }
+
+    var ingredients = [];
+    document.querySelectorAll('.ing-row').forEach(function (row) {
+      var n = row.querySelector('.ing-r-name').value.trim();
+      if (n) ingredients.push({ name: n, amount: row.querySelector('.ing-r-amount').value.trim() });
+    });
+    var steps = [];
+    document.querySelectorAll('.step-row').forEach(function (row) {
+      var t = row.querySelector('.step-r-text').value.trim();
+      var img = row.dataset.img || '';
+      if (t || img) steps.push(img ? { text: t, img: img } : t);
+    });
+    if (!ingredients.length && !steps.length) { toast('食材和步骤至少填一样'); return; }
+
+    var srcName = $('#f-src-name').value.trim(), srcUrl = $('#f-src-url').value.trim();
+    var r = {
+      name: name,
+      category: $('#f-category').value.trim() || '其他',
+      cover: $('#f-cover').value.trim(),
+      time: $('#f-time').value.trim(),
+      difficulty: $('#f-difficulty').value,
+      ingredients: ingredients,
+      steps: steps,
+      tips: $('#f-tips').value.trim(),
+      source: (srcName || srcUrl) ? { name: srcName, url: srcUrl } : null,
+      favorite: $('#f-favorite').checked,
+      date: new Date().toISOString().slice(0, 10)
+    };
+    if (editingId) {
+      var old = findRecipe(editingId);
+      if (old) r.date = old.date;  // 编辑不改变收录日期
+    }
+    closeModal();
+    saveRecipe(r, editingId, false);
+  }
+
+  // ══════════ 路由 ══════════
+  function router() {
+    var hash = location.hash || '#/';
+    var m = hash.match(/^#\/recipe\/(.+)$/);
+    if (m) {
+      $('#page-list').hidden = true;
+      $('#page-detail').hidden = false;
+      window.scrollTo(0, 0);
+      renderDetail(decodeURIComponent(m[1]));
+    } else {
+      document.title = '小池的食谱';
+      $('#page-list').hidden = false;
+      $('#page-detail').hidden = true;
+      buildChips(); renderGrid();
+    }
+    renderSyncChip();
+  }
+
+  // ══════════ 事件绑定 ══════════
+  $('#chips').addEventListener('click', function (e) {
+    var btn = e.target.closest('.chip');
+    if (!btn) return;
+    state.category = btn.dataset.cat;
+    buildChips(); renderGrid();
+  });
+
+  var searchTimer = null;
+  $('#search-input').addEventListener('input', function (e) {
+    var v = e.target.value;
+    $('#search-clear').hidden = !v;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () { state.keyword = v; renderGrid(); }, 150);
+  });
+  $('#search-clear').addEventListener('click', function () {
+    $('#search-input').value = ''; $('#search-clear').hidden = true;
+    state.keyword = ''; renderGrid();
+  });
+
+  $('#btn-back').addEventListener('click', function () { location.hash = '#/'; });
+  $('#btn-fav').addEventListener('click', toggleFav);
+  $('#btn-del').addEventListener('click', function () {
+    if (currentDetail) deleteRecipe(currentDetail.id);
+  });
+  $('#btn-edit').addEventListener('click', function () { if (currentDetail) openModal(currentDetail); });
+
+  // 加菜入口：列表页悬浮按钮 + 空状态提示
+  var fab = document.createElement('button');
+  fab.className = 'fab'; fab.id = 'btn-add'; fab.title = '加一道菜';
+  fab.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+  document.body.appendChild(fab);
+  fab.addEventListener('click', function () { openModal(null); });
+
+  $('#modal-close').addEventListener('click', closeModal);
+  $('#btn-cancel').addEventListener('click', closeModal);
+  $('#modal').addEventListener('click', function (e) { if (e.target === $('#modal')) closeModal(); });
+  $('#btn-save').addEventListener('click', submitForm);
+  $('#btn-add-ing').addEventListener('click', function () { $('#ing-rows').appendChild(ingRow('', '')); });
+  $('#btn-add-step').addEventListener('click', function () { $('#step-rows').appendChild(stepRow('', '')); });
+  $('#btn-cover-img').addEventListener('click', function () {
+    pickImage(function (url) { $('#f-cover').value = url; toast('封面图已就绪'); });
+  });
+
+  window.addEventListener('hashchange', router);
+
+  // ══════════ 启动 ══════════
+  function importSeed(i) {
+    if (i >= RECIPES.length) {
+      return cloudList().then(function () {
+        toast('已导入 ' + RECIPES.length + ' 道示例菜到云端');
+        router();
+      });
+    }
+    var r = RECIPES[i];
+    return cloudSave(r, null).then(function () { return importSeed(i + 1); });
+  }
+
+  function boot() {
+    if (!cloudOK) { DB.mode = 'local'; router(); return; }
+    DB.mode = 'connecting'; renderSyncChip();
+    cloudList().then(function () {
+      if (DB.mode === 'cloud' && DB.cloudRecipes.length === 0 && RECIPES.length > 0) {
+        return importSeed(0);   // 云端为空 → 自动导入内置示例
+      }
+      router();
+    }).catch(function (e) {
+      DB.mode = 'local';
+      DB.banner = '云端连接失败（' + e.message + '），当前为本地模式';
+      router();
+      toast('云端连接失败，暂用本地数据');
+    });
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

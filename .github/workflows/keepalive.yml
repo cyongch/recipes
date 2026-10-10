@@ -1,0 +1,34 @@
+# ============================================================
+# Supabase 免费版保活任务
+# ------------------------------------------------------------
+# Supabase 免费版项目闲置 7 天会自动暂停。本任务每 5 天自动
+# 调用一次 REST API，保证项目永不休眠。
+#
+# 启用步骤（一次性）：
+#   1. 把食谱H5 目录推送到你的 GitHub 仓库
+#   2. 仓库 → Settings → Secrets and variables → Actions
+#      添加两个 Secret：
+#        SUPABASE_URL      = 你的 Project URL
+#        SUPABASE_ANON_KEY = 你的 anon public key
+#   3. 完成。之后每 5 天自动运行一次（也可在 Actions 页手动触发）
+# ============================================================
+
+name: keep-supabase-alive
+
+on:
+  schedule:
+    - cron: '0 3 */5 * *'   # 每 5 天 UTC 3:00（北京 11:00）执行
+  workflow_dispatch:          # 支持手动触发
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase REST API
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/recipes?select=id&limit=1" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}")
+          echo "HTTP $code"
+          if [ "$code" != "200" ]; then echo "::warning::Supabase ping returned $code (可能需要手动恢复项目)"; fi
