@@ -23,5 +23,5 @@ var GH_CONFIG = {
   branch: 'main',
   dataPath: 'data/recipes.json',   // 菜谱数据文件
   imgDir: 'images',                // 步骤/封面图片目录
-  token: ''                        // ← 把 fine-grained token 填这里
+  token: ''    // token 不入库！每台设备在网页上点击"📴 仅本机"角标输入一次即可
 };

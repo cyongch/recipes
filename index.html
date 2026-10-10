@@ -132,7 +132,9 @@
   // ══════════ 数据层：云端(GitHub 仓库) / 本地 双模式 ══════════
   var GH = window.GH_CONFIG || {};
   var GHAPI = 'https://api.github.com';
-  var cloudOK = !!(GH.owner && GH.repo && GH.token);
+  // token 不写进代码仓库：每台设备首次使用时输入一次，存本机浏览器
+  var GH_TOKEN = localStorage.getItem('gh_token') || GH.token || '';
+  var cloudOK = !!(GH.owner && GH.repo && GH_TOKEN);
 
   var DB = {
     mode: cloudOK ? 'connecting' : 'local',  // cloud | local
@@ -153,7 +155,7 @@
   // ── GitHub Contents API 读写 data/recipes.json ──
   function ghHeaders() {
     return {
-      'Authorization': 'Bearer ' + GH.token,
+      'Authorization': 'Bearer ' + GH_TOKEN,
       'Accept': 'application/vnd.github+json',
       'Content-Type': 'application/json'
     };
@@ -317,7 +319,9 @@
     chip.title = DB.banner ||
       (DB.mode === 'cloud'
         ? '数据已存云端，多台设备同步'
-        : '尚未配置云端（编辑 config.js 填入 GitHub fine-grained token），当前数据只存在本机浏览器');
+        : (GH.owner && !localStorage.getItem('gh_token')
+            ? '点击这里粘贴 token 即可开启云端同步（只需设置一次）'
+            : '云端未就绪，当前数据只存在本机浏览器'));
   }
 
   // ══════════ 详情页 ══════════
@@ -676,6 +680,17 @@
   });
 
   window.addEventListener('hashchange', router);
+
+  // 未配置 token 时，点状态角标 → 输入 token 存本机 → 刷新生效
+  $('#sync-chip').addEventListener('click', function () {
+    if (DB.mode !== 'local' || !GH.owner || localStorage.getItem('gh_token')) return;
+    var t = prompt('首次使用需配置同步：\n粘贴 GitHub fine-grained token（github_pat_ 开头，仅授权本仓库 Contents 读写）');
+    if (t && t.trim()) {
+      localStorage.setItem('gh_token', t.trim());
+      toast('已保存，正在连接云端…');
+      setTimeout(function () { location.reload(); }, 800);
+    }
+  });
 
   // ══════════ 启动 ══════════
   function refreshCloud() {
