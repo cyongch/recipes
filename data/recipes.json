@@ -136,5 +136,36 @@
     "source": null,
     "favorite": false,
     "date": "2026-10-10"
+  },
+  {
+    "id": "shuiguogan_mofei",
+    "name": "自制水果干（摩飞果干机版）",
+    "category": "零食",
+    "cover": "",
+    "time": "约8小时（烘烤7-8小时）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红心火龙果",
+        "amount": "2个（小果）"
+      },
+      {
+        "name": "柠檬",
+        "amount": "1个"
+      },
+      {
+        "name": "脆柿",
+        "amount": "1个"
+      }
+    ],
+    "steps": [
+      "所有水果均切成2-3毫米薄片，切好的柠檬一定记得去掉籽（去籽烘干的柠檬片泡水喝没有苦味，可以不加糖直接喝）",
+      "设置果干机70摄氏度，7-8个小时",
+      "出炉的果干不软也不特别硬，微微有点嚼劲即为合适"
+    ],
+    "tips": "水果片切厚了也没关系，增长烘烤的时间就好",
+    "source": "https://m.xiachufang.com/recipe/107214152/",
+    "favorite": false,
+    "date": "2023-10-18"
   }
 ]
