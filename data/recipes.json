@@ -3,7 +3,7 @@
     "id": "hongshaorou",
     "name": "红烧肉",
     "category": "家常菜",
-    "cover": "",
+    "cover": "https://cyongch.github.io/recipes/images/hongshaorou_cover.jpg",
     "time": "90分钟",
     "difficulty": "中等",
     "ingredients": [
@@ -57,7 +57,7 @@
     "id": "kelejichi",
     "name": "可乐鸡翅",
     "category": "家常菜",
-    "cover": "",
+    "cover": "https://cyongch.github.io/recipes/images/kelejichi_cover.jpg",
     "time": "30分钟",
     "difficulty": "简单",
     "ingredients": [
@@ -101,7 +101,7 @@
     "id": "fanqiejidantang",
     "name": "番茄蛋花汤",
     "category": "汤羹",
-    "cover": "",
+    "cover": "https://cyongch.github.io/recipes/images/fanqiejidantang_cover.jpg",
     "time": "15分钟",
     "difficulty": "简单",
     "ingredients": [
