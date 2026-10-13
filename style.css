@@ -119,7 +119,7 @@ body {
 .card-cover-wrap { position: relative; }
 .card-cover {
   display: block;
-  width: 100%; aspect-ratio: 4 / 3;
+  width: 100%; aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 .card-cover.placeholder {
@@ -148,6 +148,11 @@ body {
   margin-top: 4px;
   font-size: 11.5px; color: var(--text-2);
   white-space: nowrap; overflow: hidden;
+}
+.card-sub {
+  margin-top: 3px;
+  font-size: 11.5px; color: #b5ada2;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 /* ── 空状态 ── */

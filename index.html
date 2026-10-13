@@ -306,6 +306,7 @@
         '<div class="card-body">' +
           '<div class="card-name">' + esc(r.name) + '</div>' +
           '<div class="card-meta"><span>' + esc(r.category) + '</span><span>' + esc(r.time) + '</span><span>' + esc(r.difficulty) + '</span></div>' +
+          '<div class="card-sub">' + (r.ingredients ? r.ingredients.length : 0) + ' 种食材 · ' + (r.steps ? r.steps.length : 0) + ' 个步骤</div>' +
         '</div></a>';
     }).join('');
   }
