@@ -459,7 +459,7 @@
     });
   }
 
-  // ── 图片上传：压缩后提交进仓库 images/ 目录，展示走 jsDelivr CDN ──
+  // ── 图片上传：压缩后提交进仓库 images/ 目录，展示走 GitHub Pages 自身域名 ──
   function downscale(file, cb) {
     var img = new Image();
     var url = URL.createObjectURL(file);
@@ -498,7 +498,12 @@
           if (!res.ok) throw new Error('HTTP ' + res.status);
           return res.json();
         }).then(function () {
-          cb('https://cdn.jsdelivr.net/gh/' + GH.owner + '/' + GH.repo + '@' + GH.branch + '/' + GH.imgDir + '/' + name);
+          // 国内访问：jsDelivr 与 raw.githubusercontent 均被墙，
+          // 改用 GitHub Pages 自身域名（站点已验证可达），自动适配部署地址
+          var siteBase = (location.hostname.indexOf('github.io') >= 0)
+            ? (location.origin + location.pathname.replace(/\/$/, ''))
+            : ('https://' + GH.owner + '.github.io/' + GH.repo);
+          cb(siteBase + '/' + GH.imgDir + '/' + name);
         }).catch(function (e) {
           toast('图片上传失败：' + e.message);
         });
