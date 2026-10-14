@@ -1244,5 +1244,33 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "guihuagan",
+    "name": "自制桂花干",
+    "category": "调料",
+    "cover": "https://cyongch.github.io/recipes/images/guihuagan_cover.jpg",
+    "time": "6小时（40℃）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "新鲜桂花",
+        "amount": "随意"
+      }
+    ],
+    "steps": [
+      "新鲜桂花采下来后略微挑选一下（剔除杂质、枯花）。",
+      "筛选后的桂花倒入清水中，用筷子轻柔、迅速搅拌清洗，洗完赶紧沥干。",
+      "用厨房纸吸干多余水分，均匀铺在硅胶垫上。",
+      "干果机 40℃ 烘 6 小时。",
+      "烘干即为成品，做糕点时可用于点缀装饰。"
+    ],
+    "tips": "中秋前后桂花最盛；清洗要快、沥干吸干再烘，避免水渍残留；烘干后密封防潮，做糕点、泡茶均可点缀提香。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/105938631/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
