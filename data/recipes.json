@@ -1375,5 +1375,31 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "hongzaopian",
+    "name": "香脆红枣片（干果机版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/hongzaopian_cover.jpg",
+    "time": "5小时（70℃）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红枣",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "红枣去核（可用吸管顶出，或用专用去核器）。",
+      "将去核红枣切成薄片（用刀，或用图中绿色切片器）。",
+      "切片摆入干果机网盘，设置 70℃ 烘 5 小时，即成香脆红枣片。"
+    ],
+    "tips": "去核用吸管或去核器均可；切片越薄越易脆；70℃/5h 为参考，具体依机器与切片厚度微调。烘干后密封防潮，作零嘴酥脆可口。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/106392276/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
