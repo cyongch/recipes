@@ -296,5 +296,31 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "mofei_param",
+    "name": "摩飞干果机·果干时间参数",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/mofei_param_cover.jpg",
+    "time": "4-5小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "水果",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "苹果干：75℃ 烘 5 小时，到时间后拿出自然冷却即变脆，再放入密封袋保存。",
+      "柠檬：清洗擦干表面水分，切薄片，80℃ 烘 4 小时（去籽可去苦涩）。",
+      "切片厚度决定烘干时长，烘干结束后晾凉再收存。"
+    ],
+    "tips": "不同水果的温度与时间需按切片薄厚微调；果干可泡茶、泡蜂蜜水或做水果花茶。本卡为摩飞干果机常用参数汇总，原帖持续更新。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104556809/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
