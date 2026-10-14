@@ -322,5 +322,94 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "fenggan_niurou",
+    "name": "摩飞干果机-自制风干牛肉",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/fenggan_niurou_cover.jpg",
+    "time": "约8小时",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "牛里脊",
+        "amount": "600g"
+      },
+      {
+        "name": "料酒",
+        "amount": "10g"
+      },
+      {
+        "name": "生抽",
+        "amount": "10g"
+      },
+      {
+        "name": "八角",
+        "amount": "3个"
+      },
+      {
+        "name": "桂皮",
+        "amount": "1块"
+      },
+      {
+        "name": "香叶",
+        "amount": "3片"
+      },
+      {
+        "name": "五香粉",
+        "amount": "8g"
+      },
+      {
+        "name": "孜然粉",
+        "amount": "5g"
+      },
+      {
+        "name": "蚝油",
+        "amount": "10g"
+      }
+    ],
+    "steps": [
+      "牛肉冷水浸泡1小时析出血水，洗净。",
+      "加生抽、料酒、八角、桂皮、香叶，用手按摩使酱汁均匀吸收。",
+      "牛肉连佐料入铸铁锅或砂锅，倒冷水没过，大火烧开后撇去浮沫，转小火煮45分钟（水量不足可加热水）。",
+      "关火，待牛肉自然冷却后取出切条。",
+      "加蚝油、五香粉、孜然粉搅拌均匀，腌制30分钟。",
+      "将腌好的肉条摆上网架，放入干果机。",
+      "设置70度、7小时烘干。",
+      "出炉，原汁原味、健康无添加的风干牛肉。"
+    ],
+    "tips": "喜欢干而有嚼劲的口感可适当加时，喜欢松软则减时；烘干后温度会自动降到45℃，取食不易烫伤。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103810207/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
+  },
+  {
+    "id": "xiangchenggan",
+    "name": "摩飞干果机—香橙干",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/xiangchenggan_cover.jpg",
+    "time": "10小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "橙子",
+        "amount": "3个"
+      }
+    ],
+    "steps": [
+      "橙子洗净切片。",
+      "干果机设定80度，10小时。",
+      "装进密封袋保存。"
+    ],
+    "tips": "橙子切薄片更易烘干；80℃约10小时，烘好后密封保存防潮。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/106064560/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
