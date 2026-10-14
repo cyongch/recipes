@@ -847,5 +847,36 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "shengnvguogan",
+    "name": "摩飞干果机之圣女果干",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/shengnvguogan_cover.jpg",
+    "time": "8小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "圣女果",
+        "amount": "500克"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "圣女果 + 盐，用水洗净。",
+      "对半切，放入烤网，切面朝上摆好。",
+      "干果机定时 80℃、8 小时。",
+      "完成，口感不错；可顺带烘几片柠檬片泡水。"
+    ],
+    "tips": "圣女果切半摆盘，80℃/8h；果干可直接当零食或做面包，顺带可烘柠檬片泡水。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103877796/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
