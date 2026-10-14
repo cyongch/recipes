@@ -952,5 +952,61 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "wuhuaguogan",
+    "name": "无花果干（摩飞干果机）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/wuhuaguogan_cover.jpg",
+    "time": "8-10小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "无花果",
+        "amount": "45颗左右"
+      }
+    ],
+    "steps": [
+      "无花果一颗切六瓣或八瓣，尽量大小均匀（否则烘干程度不一致）。",
+      "设 80℃、8 小时开始烘干。",
+      "8 小时口感偏软，9 小时软硬刚刚好。",
+      "若要久存，第 10 小时直接烘成干（口感略干）。",
+      "烘干时间与切块大小有关，按个人喜好调整。"
+    ],
+    "tips": "烘干时间与切块大小有关；80℃ 下 8h 偏软、9h 适中、10h 成干易保存。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/107597829/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
+  },
+  {
+    "id": "shanzhagan",
+    "name": "自制山楂干（干果机版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/shanzhagan_cover.jpg",
+    "time": "7小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "山楂",
+        "amount": "1斤半"
+      }
+    ],
+    "steps": [
+      "山楂用淡盐水洗净。",
+      "切片，一颗果切 4-5 片，留核去蒂。",
+      "平铺在干果机网盘上。",
+      "75℃ 烘 7 小时（最好用谷电，省电）。",
+      "完工，包装送人。"
+    ],
+    "tips": "我用的是摩飞的干果机；75℃/7h，最好用谷电更省电。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/106596588/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
