@@ -912,5 +912,45 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "xingpu",
+    "name": "杏脯（摩飞干果机）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/xingpu_cover.jpg",
+    "time": "10小时（另腌一夜）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "杏",
+        "amount": "2000克"
+      },
+      {
+        "name": "水",
+        "amount": "500克"
+      },
+      {
+        "name": "盐",
+        "amount": "10克"
+      },
+      {
+        "name": "糖",
+        "amount": "250克"
+      }
+    ],
+    "steps": [
+      "盐水（水 500g + 盐 10g）浸泡清洗后去核。",
+      "水沸腾后蒸 2-3 分钟（勿过久）。",
+      "趁热加糖 250g，入冰箱腌制一夜。",
+      "摆入烘干机，创口面向上，垫厨房油纸，70℃ 烘 10 小时。",
+      "完成，表面薄如纸部分是糖液。"
+    ],
+    "tips": "蒸不超 3 分钟；烘干时创口面向上；垫油纸防糖液粘连烘干架；糖要放足。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103857894/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
