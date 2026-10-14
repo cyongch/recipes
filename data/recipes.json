@@ -565,5 +565,45 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "mangguogan",
+    "name": "无添加芒果干（摩飞干果机）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/mangguogan_cover.jpg",
+    "time": "10小时（另需糖泡）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "较熟大青芒（或大芒果）",
+        "amount": "1000g"
+      },
+      {
+        "name": "糖",
+        "amount": "150g（较熟减50g）"
+      },
+      {
+        "name": "白醋/柠檬汁",
+        "amount": "5ml"
+      },
+      {
+        "name": "凉白开",
+        "amount": "500g"
+      }
+    ],
+    "steps": [
+      "芒果洗净削皮，切片（别太薄，推荐陶瓷刀，果滑小心手），再切条，大小相近即可。",
+      "白糖用少许开水融化，加入凉白开混合，再加白醋（或柠檬汁）。",
+      "放入芒果，保鲜膜密封，入冰箱浸泡 4 小时—2 天（芒果不太熟就泡久些）。",
+      "取出平铺入机，70℃ 烘 10 小时。",
+      "成品表面亮晶晶是糖分析出，酸甜软糯、无添加剂。"
+    ],
+    "tips": "参考摩飞食谱；糖量随芒果熟度调整（较熟可减 50g），喜欢更甜可适当增加。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/104250745/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
