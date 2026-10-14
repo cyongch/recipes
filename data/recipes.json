@@ -510,5 +510,60 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "zhuroupu",
+    "name": "自制猪肉脯（摩飞干果机版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/zhuroupu_cover.jpg",
+    "time": "约3小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "猪肉",
+        "amount": "320克"
+      },
+      {
+        "name": "生抽",
+        "amount": "4勺"
+      },
+      {
+        "name": "老抽",
+        "amount": "1勺"
+      },
+      {
+        "name": "糖",
+        "amount": "30克"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "黑胡椒",
+        "amount": "2勺"
+      },
+      {
+        "name": "麻油",
+        "amount": "少量"
+      },
+      {
+        "name": "蜂蜜",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "除蜂蜜外，将全部调料与猪肉拌匀。",
+      "铺油纸，放腌制好的猪肉，上垫保鲜膜，用擀面杖擀均匀、尽量薄，扫一层蜂蜜，放入摩飞干果机 80℃ 烘 3 小时；2 小时时翻面并补刷蜂蜜继续烘干。",
+      "约 3 小时后取出。",
+      "切开即食，味道和口感都很像外面买的。"
+    ],
+    "tips": "肉片擀得越薄越易烘干均匀；翻面时补刷蜂蜜，成品更亮更甜。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/104352022/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
