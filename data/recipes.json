@@ -878,5 +878,39 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "niurou_moyabang",
+    "name": "牛肉磨牙棒（摩飞干果机·婴儿版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/niurou_moyabang_cover.jpg",
+    "time": "约6.5小时（另腌2小时）",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "牛肉",
+        "amount": "一块"
+      },
+      {
+        "name": "洋葱",
+        "amount": "半个"
+      }
+    ],
+    "steps": [
+      "牛肉提前浸泡出血水，中途多次换水（一岁内不加盐和调味品）。",
+      "牛肉顺纹切 1.5×10cm 长条（顺纹不易咬断）；洋葱切丝。",
+      "牛肉与洋葱揉匀，把洋葱汁揉入肉里，冰箱冷藏 2 小时。",
+      "挑出牛肉条，开水上锅蒸 15 分钟（粗条适当延长；牙签扎无血水即熟）。",
+      "蒸熟摆上不锈钢网。",
+      "干果机 70℃ 风干 4 小时（可同时风干芒果/菠萝/香蕉片）。",
+      "时间到自动冷却，取出即可。"
+    ],
+    "tips": "一岁内婴儿不额外加盐，仅用洋葱祛腥增风味；顺纹切条不易咬断；宝宝食用磨牙棒时务必有大人在旁看护。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103801023/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
