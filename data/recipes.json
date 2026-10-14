@@ -785,5 +785,36 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "hongshugan",
+    "name": "自制红薯干（摩飞干果机版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/hongshugan_cover.jpg",
+    "time": "约4.5小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红薯",
+        "amount": "2个大的"
+      },
+      {
+        "name": "白糖",
+        "amount": "少量"
+      }
+    ],
+    "steps": [
+      "红薯剥皮切条，泡水洗净，均匀撒少量白糖，入锅蒸 15 分钟取出。",
+      "放到干果机架上晾凉。",
+      "干果机 75℃ 烘 4 小时。",
+      "取出即成品。"
+    ],
+    "tips": "红薯条撒少许糖蒸制再烘，成品带甜味；75℃/4h 偏软糯，喜干可酌情加时。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/104352078/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
