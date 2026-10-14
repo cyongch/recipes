@@ -1083,5 +1083,35 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "honglajiaogan",
+    "name": "干果机制干红辣椒",
+    "category": "调料",
+    "cover": "https://cyongch.github.io/recipes/images/honglajiaogan_cover.jpg",
+    "time": "8-10小时（70℃）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红小米椒",
+        "amount": "1斤"
+      }
+    ],
+    "steps": [
+      "用干净润湿的抹布把小米椒表面擦拭一下，剪去蒂把。",
+      "一个一个平铺摆在干果机网格上。",
+      "如图，四个网格摆放一斤，很宽松。",
+      "摩飞干果机温度调 70 度，时间 8 小时；一觉睡醒后打开检查，若辣椒热量散尽、手捏仍不是很干，就追加 2 小时。",
+      "趁热从干果机里取出来敞着。",
+      "热气散尽后装袋密封保存（一斤鲜小米椒去蒂风干后约得二两多干辣椒）。",
+      "装在塑料瓶里更方便保存和取用。"
+    ],
+    "tips": "干度判断：手捏不粘、热量散尽即可；密封防潮，用塑料瓶取用方便。一斤鲜小米椒去蒂风干后约得二两多。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/106966561/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
