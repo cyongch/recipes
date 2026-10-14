@@ -1055,5 +1055,33 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "mangguogan_kuaishou",
+    "name": "快手无添加芒果干（机版）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/mangguogan_kuaishou_cover.jpg",
+    "time": "9-10小时（65-70℃）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "芒果",
+        "amount": "适量（金煌芒约5个/机）"
+      }
+    ],
+    "steps": [
+      "芒果洗净，厨房纸擦干表面水分；选个头一般的金煌芒（约女生手掌长宽），五个一机。",
+      "去皮，按果实形状削成片。",
+      "厚度约 2～3 厘米，前后一致；太厚烘不干，太薄干了会粘网。",
+      "摩飞机版时长：夏季伏天 65℃/9 小时；春秋季节 70℃/10 小时。",
+      "核不大但很薄，削片时注意避开果核。"
+    ],
+    "tips": "芒果要熟才够甜，不看皮色，手轻捏各部位略有软感即熟；熟烂了勿食。无添加、纯芒果切片直接烘干，与糖渍版做法不同。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/106855977/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
