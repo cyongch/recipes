@@ -816,5 +816,36 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "suannai",
+    "name": "摩飞干果机之酸奶",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/suannai_cover.jpg",
+    "time": "8小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "纯牛奶",
+        "amount": "1L"
+      },
+      {
+        "name": "菌粉",
+        "amount": "一包"
+      }
+    ],
+    "steps": [
+      "想做稠一点用全脂牛奶（全脂与脱脂脂肪差不大，但营养差很多）。",
+      "牛奶与菌粉拌匀，倒入瓶中盖盖，放入干果机。",
+      "40℃ 发酵 8 小时。",
+      "放冰箱冷藏后食用口感更好；喜甜可加约 15g 糖。"
+    ],
+    "tips": "菌粉不同，做出来的酸奶粘稠度不同；冷藏后食用更佳。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103937194/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
