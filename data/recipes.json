@@ -757,5 +757,33 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "boluomigan",
+    "name": "零添加菠萝蜜干（摩飞干果机）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/boluomigan_cover.jpg",
+    "time": "7-8小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "新鲜菠萝蜜（带籽）",
+        "amount": "2斤"
+      }
+    ],
+    "steps": [
+      "菠萝蜜过一遍凉开水，剥掉果肉旁的浅黄条。",
+      "对半切，剥出籽，籽外薄皮也不留。",
+      "平铺、有空隙地摆入果干机网盘（带籽 2 斤约 4 盘一机）。",
+      "摩飞干果机 70℃，7-8 小时（按果肉厚度和口感，久则更干，带一点果肉感更好）。",
+      "出炉即食，大块大块过瘾。"
+    ],
+    "tips": "70℃ 7-8 小时，时间越久越干，带一点果肉感口感最佳；可睡前放入，晨起收成。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/104245674/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
