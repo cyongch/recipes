@@ -1113,5 +1113,33 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "ganlajiao",
+    "name": "干辣椒（干果机版）",
+    "category": "调料",
+    "cover": "https://cyongch.github.io/recipes/images/ganlajiao_cover.jpg",
+    "time": "6小时（80℃）",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "小米辣（鲜）",
+        "amount": "500克"
+      }
+    ],
+    "steps": [
+      "小米辣 500 克，清洗干净，去蒂，沥干水分。",
+      "平铺在干果机网格上（摩飞四层刚好放完）。",
+      "80 度，6 小时烘干。",
+      "完成，晾凉。",
+      "500 克小米辣，约出干辣椒 100 克（得率约 20%）。"
+    ],
+    "tips": "买的干辣椒易脏、往年晒制久且落灰，用干果机烘干更干净省心；得率约 20%（500g 鲜辣→100g 干椒），密封防潮保存。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/107175839/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
