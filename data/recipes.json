@@ -411,5 +411,45 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "qiukuigan",
+    "name": "摩飞干果机-秋葵干",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/qiukuigan_cover.jpg",
+    "time": "1-2小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "秋葵",
+        "amount": "200克"
+      },
+      {
+        "name": "橄榄油",
+        "amount": "1勺"
+      },
+      {
+        "name": "盐",
+        "amount": "3克"
+      },
+      {
+        "name": "黑胡椒碎",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "新鲜秋葵洗净；小锅加一勺盐，水开后放入秋葵焯水1分钟。",
+      "沥干水的秋葵放入保鲜袋，加一勺盐、一勺橄榄油，撒些黑胡椒碎，在袋里揉匀。",
+      "放入摩飞干果机，70度风干1-2小时（1个多小时较嫩，2小时较干）。",
+      "也可将焯水后的秋葵剖开，刷橄榄油、撒盐，70度风干1小时，出炉后撒黑胡椒碎。",
+      "佐餐、当零食、做沙拉均可。"
+    ],
+    "tips": "市售秋葵脆是真空脱水技术制成；家用干果机烘干只能做出秋葵干（非脆），但味道同样不错，直接吃、做沙拉、佐餐都很好。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103809929/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
