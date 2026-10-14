@@ -690,5 +690,72 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "mizhi_zhuroupu",
+    "name": "自制蜜汁猪肉脯（摩飞干果机）",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/mizhi_zhuroupu_cover.jpg",
+    "time": "约3小时（另腌30分钟）",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "猪肉",
+        "amount": "500克"
+      },
+      {
+        "name": "白糖",
+        "amount": "50克"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "20克"
+      },
+      {
+        "name": "盐",
+        "amount": "2克"
+      },
+      {
+        "name": "胡椒粉",
+        "amount": "1克"
+      },
+      {
+        "name": "蚝油",
+        "amount": "1勺"
+      },
+      {
+        "name": "蜂蜜",
+        "amount": "3勺"
+      },
+      {
+        "name": "水",
+        "amount": "10克"
+      },
+      {
+        "name": "白芝麻",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "猪肉剁碎（或机打），加料酒、蚝油、糖、盐、胡椒粉、生抽，同一方向搅匀，腌30分钟。",
+      "分 4 份，盖保鲜膜在油纸上擀开。",
+      "入干果机 80℃ 风干 2-3 小时（风 4 小时偏干，2-3 小时合适）。",
+      "风干后可撕开油纸。",
+      "蜂蜜 + 水搅匀，均匀涂在肉干两面。",
+      "撒上白芝麻。",
+      "每面 180℃ 热风烤 4 分钟。",
+      "放凉后切开。"
+    ],
+    "tips": "喜欢油脂香可加约 50g 肥肉；风干时间随肉脯厚度和个人口味调整（喜硬长、喜软短）。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://www.xiachufang.com/recipe/103831313/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
