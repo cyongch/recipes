@@ -174,5 +174,78 @@
     },
     "favorite": false,
     "date": "2023-10-18"
+  },
+  {
+    "id": "pingguogan",
+    "name": "摩飞干果机自制苹果干",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/pingguogan_cover.jpg",
+    "time": "约11小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "苹果",
+        "amount": "2个"
+      },
+      {
+        "name": "摩飞干果机",
+        "amount": "1台"
+      }
+    ],
+    "steps": [
+      "苹果去芯、切成薄片，放入干果机。视自己的习惯决定是否去皮，我去了。",
+      "摩飞干果机设置60度8小时开始烘干，8小时后感觉有一点皮，不脆，又加了3小时。",
+      "刚拿出来时还是有点皮，晾一会儿就脆一些了，收起来就可以当小零食吃了。"
+    ],
+    "tips": "苹果切薄片更易烘干；60℃低温慢烘能保留营养，喜欢更脆的口感可适当延长1-2小时。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/103838168/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
+  },
+  {
+    "id": "fanshugan",
+    "name": "水果、番薯干—摩飞干果机",
+    "category": "零食",
+    "cover": "https://cyongch.github.io/recipes/images/fanshugan_cover.jpg",
+    "time": "6-8小时",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红薯",
+        "amount": "3个"
+      },
+      {
+        "name": "黄柠檬",
+        "amount": "1个"
+      },
+      {
+        "name": "青柠檬",
+        "amount": "1个"
+      },
+      {
+        "name": "西柚",
+        "amount": "半个"
+      }
+    ],
+    "steps": [
+      "水果切片，尽量厚薄均匀，这样风干时间一致",
+      "排好在烤网上",
+      "番薯去皮",
+      "切片",
+      "蒸5分钟",
+      "放入摩飞干果机里",
+      "70度6-8小时，要看切的厚薄",
+      "干好了，自己做无添加的番薯干"
+    ],
+    "tips": "番薯切片蒸5分钟即可，不宜蒸的时间过长。风干时间根据切的厚薄而定，喜欢干一点时间就长一点，喜欢软一点时间就短一点。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/103824809/"
+    },
+    "favorite": false,
+    "date": "2026-10-14"
   }
 ]
