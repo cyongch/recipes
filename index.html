@@ -137,8 +137,9 @@
   var cloudOK = !!(GH.owner && GH.repo && GH_TOKEN);
 
   var DB = {
-    mode: cloudOK ? 'connecting' : 'local',  // cloud | local
-    cloudRecipes: [],                         // 云端拉下来的菜
+    mode: 'connecting',   // cloud | local
+    cloudRecipes: [],     // 云端拉下来的菜
+    readonly: false,      // true=无 token 的只读分享页（仅可读，写操作需配置 token）
     banner: ''
   };
 
@@ -194,6 +195,19 @@
       .then(function (d) {
         if (d.sha === null) return d;
         return { sha: d.sha, recipes: JSON.parse(b64ToUtf8(d.content)) };
+      });
+  }
+  // 同源直接读取 Pages 上的静态 data/recipes.json（无需 token / api.github.com，
+  // 国内可直达）。这是所有访客（含未配置 token 的分享链接打开者）读取全量的默认路径。
+  function pagesList() {
+    return fetch(GH.dataPath, { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (arr) {
+        if (!Array.isArray(arr)) throw new Error('数据格式异常');
+        return { recipes: arr };
       });
   }
   // 写入数据文件；sha 过期（他端先写入）时自动重读合并重试
@@ -314,7 +328,8 @@
   // 同步状态角标
   function renderSyncChip() {
     var chip = $('#sync-chip');
-    if (DB.mode === 'cloud') { chip.textContent = '☁ 已同步'; chip.className = 'sync-chip ok'; }
+    if (DB.mode === 'cloud' && !DB.readonly) { chip.textContent = '☁ 已同步'; chip.className = 'sync-chip ok'; }
+    else if (DB.mode === 'cloud' && DB.readonly) { chip.textContent = '👁 只读分享'; chip.className = 'sync-chip'; }
     else if (DB.mode === 'connecting') { chip.textContent = '☁ 连接中…'; chip.className = 'sync-chip'; }
     else { chip.textContent = '📴 仅本机'; chip.className = 'sync-chip off'; }
     chip.title = DB.banner ||
@@ -382,6 +397,10 @@
   // ══════════ 保存/删除（模式自适应） ══════════
   // silent=true 时不弹 toast（收藏等小操作）
   function saveRecipe(r, objectId, silent) {
+    if (DB.readonly) {
+      toast('这是只读分享页，加菜/编辑请在本机配置 token（点右上角状态角标）');
+      return;
+    }
     if (DB.mode === 'cloud') {
       var isNew = !objectId;
       var norm = normalizeRecipe(r);
@@ -423,6 +442,7 @@
   }
 
   function deleteRecipe(id) {
+    if (DB.readonly) { toast('只读分享页，删除需在本机配置 token'); return; }
     if (!confirm('确定删除这道菜？此操作不可撤销。')) return;
     if (DB.mode === 'cloud') {
       ghMutate(function (list) {
@@ -515,6 +535,7 @@
 
   // 通用选图入口：云端模式弹文件选择器，本机模式贴链接
   function pickImage(cb) {
+    if (DB.readonly) { toast('只读分享页，配图请在本机配置 token'); return; }
     if (DB.mode === 'cloud') {
       var fi = document.createElement('input');
       fi.type = 'file';
@@ -707,40 +728,27 @@
   }
 
   function boot() {
-    if (!cloudOK) { DB.mode = 'local'; router(); return; }
     DB.mode = 'connecting'; renderSyncChip();
-    ghList().then(function (cur) {
-      var list = cur.recipes;
-      var tasks = [];
-      // 数据文件为空 → 导入内置示例菜
-      if (list.length === 0 && RECIPES.length > 0) {
-        list = RECIPES.slice();
-        tasks.push(ghSaveFile(list, cur.sha, 'init: import seed recipes'));
-      }
-      // 本机模式期间攒下的菜 → 自动迁移上云
-      if (localAdded.length > 0) {
-        var ids = {};
-        list.forEach(function (x) { ids[x.id] = 1; });
-        localAdded.forEach(function (x) {
-          if (!ids[x.id]) { list.push(normalizeRecipe(x)); }
-        });
-        tasks.push(ghSaveFile(list, cur.sha, 'migrate local recipes'));
-        localAdded = [];
-        persistLocal();
-      }
-      if (tasks.length) {
-        return Promise.all(tasks).then(function () {
-          toast('云端数据初始化完成');
-          return refreshCloud();
-        });
-      }
-      return refreshCloud();
-    }).then(router).catch(function (e) {
-      DB.mode = 'local';
-      DB.banner = '云端连接失败（' + e.message + '），当前为本地模式';
-      router();
-      toast('云端连接失败，暂用本地数据');
-    });
+    // 优先：同源直接读取 Pages 上的静态 data/recipes.json
+    // （不依赖 token / api.github.com，国内可直达，分享链接打开即可见全量）
+    pagesList()
+      .then(function (d) {
+        DB.cloudRecipes = d.recipes;
+        DB.mode = 'cloud';
+        DB.readonly = !cloudOK;   // 无 token 仅可读；有 token 既可看也可写
+        DB.banner = DB.readonly ? '这是只读分享页，加菜/编辑需在本机配置 token' : '';
+        router();
+      })
+      .catch(function () {
+        // 退路：静态文件读取失败（极端网络），已配 token 再试 GitHub API
+        if (cloudOK) {
+          return refreshCloud().then(router).catch(function () {
+            DB.mode = 'local'; router();
+          });
+        }
+        // 无任何可读数据源 → 本地静态示例（最后兜底）
+        DB.mode = 'local'; router();
+      });
   }
 
   boot();
