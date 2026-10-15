@@ -1463,5 +1463,423 @@
     },
     "favorite": false,
     "date": "2026-10-14"
+  },
+  {
+    "id": "paigu_outang",
+    "name": "排骨莲藕汤",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/paigu_outang_cover.jpg",
+    "time": "约90分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "排骨",
+        "amount": "500g"
+      },
+      {
+        "name": "莲藕",
+        "amount": "2节(约600g)"
+      },
+      {
+        "name": "姜",
+        "amount": "4片"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      },
+      {
+        "name": "葱",
+        "amount": "1根(可选)"
+      },
+      {
+        "name": "白胡椒粉",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "排骨斩段，冷水下锅，加料酒和两片姜焯水，撇去浮沫后捞出温水洗净。",
+      "莲藕去皮切滚刀块（选粉藕/九孔藕，炖后粉糯）；姜切片，葱切段。",
+      "砂锅或汤锅加足量热水，下排骨、姜片、葱段，大火烧开转小火炖约40分钟。",
+      "下莲藕块，继续小火炖30–40分钟至藕软烂、汤色奶白。",
+      "出锅前加盐调味，撒少许白胡椒粉和葱花即可。"
+    ],
+    "tips": "排骨冷水焯水去腥更彻底；莲藕选粉藕（九孔），炖汤更粉糯；盐一定要最后放，过早放盐肉不易炖烂。汤色奶白的关键是焯水后加热水、大火先滚开再转小火。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/174801/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "hunan_xiaochaorou",
+    "name": "湖南小炒肉",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/hunan_xiaochaorou_cover.jpg",
+    "time": "20分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "猪前腿肉或五花肉",
+        "amount": "300g"
+      },
+      {
+        "name": "螺丝椒/线椒",
+        "amount": "200g"
+      },
+      {
+        "name": "蒜",
+        "amount": "4瓣"
+      },
+      {
+        "name": "姜",
+        "amount": "1小块"
+      },
+      {
+        "name": "豆豉",
+        "amount": "1勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "2勺"
+      },
+      {
+        "name": "老抽",
+        "amount": "半勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "盐",
+        "amount": "少许"
+      },
+      {
+        "name": "食用油",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "猪肉切薄片（带一点肥更香），青椒斜切段，蒜切片，姜切丝。",
+      "锅烧热少油，下肉片中火煸炒至卷边、吐油，盛出备用（锅中留底油）。",
+      "下蒜片、姜丝、豆豉爆香，下青椒大火翻炒至断生、表面微焦。",
+      "倒回肉片，加生抽、老抽、料酒、盐快速翻炒均匀，沿锅边淋少许水炝锅，出锅。"
+    ],
+    "tips": "螺丝椒/线椒比普通青椒更香更辣，是正宗小炒肉首选；肉先煸出油再炒椒，锅气足、不腥腻；全程大火快炒，避免出水变成炖菜。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/106961362/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "duojiao_yutou",
+    "name": "剁椒鱼头",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/duojiao_yutou_cover.jpg",
+    "time": "25分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "胖头鱼头",
+        "amount": "1个(约800g)"
+      },
+      {
+        "name": "剁椒",
+        "amount": "3-4勺"
+      },
+      {
+        "name": "姜",
+        "amount": "1块"
+      },
+      {
+        "name": "蒜",
+        "amount": "5瓣"
+      },
+      {
+        "name": "葱",
+        "amount": "2根"
+      },
+      {
+        "name": "蒸鱼豉油",
+        "amount": "2勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "少许"
+      },
+      {
+        "name": "食用油",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "鱼头对半劈开洗净，抹少许盐和料酒，铺姜丝腌10分钟去腥。",
+      "盘底铺姜丝蒜片，放上鱼头，均匀铺满剁椒（可加少许剁椒汁）。",
+      "水开上锅大火蒸8–10分钟（视鱼头大小），关火虚蒸2分钟。",
+      "取出倒掉多余腥水，撒葱花，淋蒸鱼豉油；另起锅烧热油浇在葱花上激香。"
+    ],
+    "tips": "鱼头要新鲜，蒸的时间不宜过长，否则肉质变老；最后那勺滚烫热油是灵魂，能激出剁椒与葱香。倒掉蒸出的腥水再淋豉油，味道更干净。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/261072/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "lawwei_hezheng",
+    "name": "腊味合蒸",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/lawwei_hezheng_cover.jpg",
+    "time": "30分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "腊鱼",
+        "amount": "1块"
+      },
+      {
+        "name": "腊肠",
+        "amount": "2根"
+      },
+      {
+        "name": "腊肉",
+        "amount": "150g"
+      },
+      {
+        "name": "豆豉",
+        "amount": "1勺"
+      },
+      {
+        "name": "姜",
+        "amount": "几片"
+      },
+      {
+        "name": "蒜",
+        "amount": "3瓣"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "2个(可选)"
+      },
+      {
+        "name": "白糖",
+        "amount": "半勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      }
+    ],
+    "steps": [
+      "腊鱼、腊肠、腊肉温水洗净；腊肉腊肠切薄片，腊鱼斩块。",
+      "盘底铺姜丝蒜片，腊味交错摆盘（腊肉垫底，腊肠腊鱼铺上）。",
+      "撒豆豉、干辣椒段，淋少许料酒和白糖（白糖提鲜解腻）。",
+      "水开上锅大火蒸20–25分钟至腊味软透、油脂渗出即可。"
+    ],
+    "tips": "腊味本身咸，一般不需额外加盐；蒸前温水泡洗去表面浮尘和多余盐分；加少许白糖能中和咸味、提鲜，是湘菜腊味蒸法的常见巧思。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/102226624/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "dongan_ziji",
+    "name": "东安子鸡",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/dongan_ziji_cover.jpg",
+    "time": "30分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "嫩仔鸡",
+        "amount": "1只(约700g)"
+      },
+      {
+        "name": "红椒",
+        "amount": "1个"
+      },
+      {
+        "name": "青椒",
+        "amount": "1个"
+      },
+      {
+        "name": "姜",
+        "amount": "1块"
+      },
+      {
+        "name": "蒜",
+        "amount": "4瓣"
+      },
+      {
+        "name": "米醋",
+        "amount": "3勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      },
+      {
+        "name": "花椒",
+        "amount": "少许"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "几个"
+      }
+    ],
+    "steps": [
+      "仔鸡洗净，整只冷水下锅加姜片料酒煮约8分钟至七分熟，捞出过凉水，斩成小块。",
+      "红椒青椒切块，姜切丝，蒜切片，干辣椒切段。",
+      "锅烧热油，下花椒、干辣椒、姜丝蒜片爆香，下鸡块大火翻炒。",
+      "沿锅边淋米醋和料酒，下青红椒块翻炒，加盐调味，出锅前再补少许醋提酸香。"
+    ],
+    "tips": "东安子鸡的灵魂是酸辣，米醋分两次放——第一次去腥、临出锅补香；鸡煮至七分熟即可，后续还要炒，过熟会柴。酸辣开胃，是湘菜宴席经典。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/107719368/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "yongzhou_xueya",
+    "name": "永州血鸭",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/yongzhou_xueya_cover.jpg",
+    "time": "30分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "仔鸭",
+        "amount": "半只(约600g)"
+      },
+      {
+        "name": "鸭血",
+        "amount": "适量(现杀鸭血)"
+      },
+      {
+        "name": "青红椒",
+        "amount": "各1个"
+      },
+      {
+        "name": "姜",
+        "amount": "1块"
+      },
+      {
+        "name": "蒜",
+        "amount": "5瓣"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "几个"
+      }
+    ],
+    "steps": [
+      "鸭肉斩小块（带骨），青红椒切块，姜蒜切片；鸭血加少许盐搅匀防凝固。",
+      "锅烧热油，下鸭块大火煸炒至变色、出油、表面微黄。",
+      "下姜蒜片、干辣椒爆香，加料酒、生抽翻炒，加少量水焖煮5分钟。",
+      "下青红椒块炒断生，关火（或转极小火），迅速倒入鸭血快速翻炒裹匀，使鸭血均匀裹在肉上凝固成紫黑色，加盐出锅。"
+    ],
+    "tips": "鸭血要在临出锅时倒入并快速翻拌，利用余热使血凝固裹肉——这是血鸭成败关键，动作要快，避免血块结成大坨。紫黑油亮、辣香浓郁，是永州招牌。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/101883575/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "maoshi_hongshaorou",
+    "name": "毛氏红烧肉",
+    "category": "湘菜",
+    "cover": "https://cyongch.github.io/recipes/images/maoshi_hongshaorou_cover.jpg",
+    "time": "约80分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "五花肉",
+        "amount": "500g"
+      },
+      {
+        "name": "白糖",
+        "amount": "30g(炒糖色)"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "6-8个"
+      },
+      {
+        "name": "八角",
+        "amount": "2个"
+      },
+      {
+        "name": "桂皮",
+        "amount": "1块"
+      },
+      {
+        "name": "姜",
+        "amount": "几片"
+      },
+      {
+        "name": "蒜",
+        "amount": "4瓣"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      },
+      {
+        "name": "食用油",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "五花肉切2–3cm方块，冷水下锅加料酒姜片焯水，撇沫捞出洗净。",
+      "锅少油小火炒白糖至枣红色冒小泡（糖色），下五花肉翻炒上色。",
+      "加姜片蒜瓣、干辣椒、八角、桂皮炒香，烹料酒。",
+      "加热水没过肉，大火烧开转小火加盖焖40–50分钟；开盖大火收汁，加盐至汤汁红亮浓稠。"
+    ],
+    "tips": "毛氏红烧肉不放酱油，全靠糖色上色，甜辣咸香、色泽红亮；干辣椒是点睛之笔（辣而不燥）；炒糖色火候要准，枣红色即下肉，炒过头会发苦。与家常红烧肉（用酱油）风味不同。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/117259/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
   }
 ]
