@@ -1881,5 +1881,473 @@
     },
     "favorite": false,
     "date": "2026-10-15"
+  },
+  {
+    "id": "mapo_doufu",
+    "name": "麻婆豆腐",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/mapo_doufu_cover.jpg",
+    "time": "20分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "嫩豆腐",
+        "amount": "1盒(约400g)"
+      },
+      {
+        "name": "牛肉末（或猪肉末）",
+        "amount": "80g"
+      },
+      {
+        "name": "郫县豆瓣酱",
+        "amount": "1.5勺"
+      },
+      {
+        "name": "干辣椒面",
+        "amount": "1勺"
+      },
+      {
+        "name": "花椒",
+        "amount": "1小把"
+      },
+      {
+        "name": "蒜末",
+        "amount": "3瓣"
+      },
+      {
+        "name": "葱花",
+        "amount": "适量"
+      },
+      {
+        "name": "生抽",
+        "amount": "1勺"
+      },
+      {
+        "name": "水淀粉",
+        "amount": "适量"
+      },
+      {
+        "name": "食用油",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "嫩豆腐切2厘米方块，放入加盐的温水中浸泡几分钟去豆腥，捞出沥干。",
+      "锅烧热油，下牛肉末中火煸炒至酥香、吐油，盛出备用。",
+      "锅留底油，下郫县豆瓣酱小火炒出红油，加蒜末、辣椒面炒香。",
+      "加小半碗水烧开，下豆腐块轻推煮2-3分钟入味（勿大力翻动以免碎）。",
+      "分两次淋水淀粉勾薄芡至汤汁裹住豆腐，撒炒好的肉末。",
+      "出锅装盘，撒上花椒粉和葱花即可。"
+    ],
+    "tips": "郫县豆瓣是麻婆豆腐的灵魂，一定要小火炒出红油；豆腐先焯水去豆腥且不易碎；花椒粉临出锅撒，麻香更突出。正宗麻婆豆腐讲究麻、辣、烫、香、酥、嫩、鲜、活八字。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104487622/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "huiguorou",
+    "name": "回锅肉",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/huiguorou_cover.jpg",
+    "time": "25分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "二刀坐臀肉（或带皮五花/后腿）",
+        "amount": "300g"
+      },
+      {
+        "name": "青蒜（蒜苗）",
+        "amount": "2根"
+      },
+      {
+        "name": "郫县豆瓣酱",
+        "amount": "1.5勺"
+      },
+      {
+        "name": "甜面酱",
+        "amount": "半勺"
+      },
+      {
+        "name": "豆豉",
+        "amount": "1勺"
+      },
+      {
+        "name": "姜",
+        "amount": "2片"
+      },
+      {
+        "name": "蒜",
+        "amount": "2瓣"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "整块猪肉冷水下锅，加姜片料酒煮约8分钟至七分熟（筷子能扎透、无血水），捞出晾凉。",
+      "肉切成2-3毫米薄片；青蒜斜切段，蒜切片。",
+      "锅烧热少油，下肉片中火煸炒至卷边、吐油、表面微黄，盛出多余油。",
+      "下郫县豆瓣酱、甜面酱、豆豉小火炒出红油与酱香。",
+      "倒回肉片翻炒上色，下蒜片炒香，最后下青蒜段大火翻炒断生，少许生抽提味出锅。"
+    ],
+    "tips": "回锅肉关键是“先煮后炒”——煮到七分熟再煸，肥而不腻、灯盏窝成型；豆瓣+甜面酱是标配，青蒜（蒜苗）最后下保持脆嫩与蒜香。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104592125/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "shuizhuyu",
+    "name": "水煮鱼",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/shuizhuyu_cover.jpg",
+    "time": "35分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "草鱼（或黑鱼）",
+        "amount": "1条(约1000g)"
+      },
+      {
+        "name": "黄豆芽",
+        "amount": "200g"
+      },
+      {
+        "name": "郫县豆瓣酱",
+        "amount": "2勺"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "一把"
+      },
+      {
+        "name": "花椒",
+        "amount": "一把"
+      },
+      {
+        "name": "姜",
+        "amount": "1块"
+      },
+      {
+        "name": "蒜",
+        "amount": "5瓣"
+      },
+      {
+        "name": "蛋清",
+        "amount": "1个"
+      },
+      {
+        "name": "淀粉",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "食用油",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "鱼肉去骨片成薄片，鱼骨斩块；鱼片加蛋清、淀粉、料酒、少许盐抓匀腌制10分钟。",
+      "豆芽焯水断生，铺在碗底垫底。",
+      "锅烧热油，下豆瓣酱、姜蒜末炒出红油，加适量水烧开成红汤。",
+      "先下鱼骨煮2分钟，再逐片下鱼片滑散，煮约1分钟至变白即捞入碗中。",
+      "鱼片上铺干辣椒段和花椒，另起锅烧滚油浇在上面激出麻辣香气即可。"
+    ],
+    "tips": "鱼片嫩滑靠蛋清+淀粉上浆，下锅后不要久煮（变白即捞）；最后那勺滚烫热油是水煮系列的灵魂，能激出辣椒花椒的香气。怕腥可鱼片先用少许盐抓洗。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/103718351/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "gongbao_jiding",
+    "name": "宫保鸡丁",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/gongbao_jiding_cover.jpg",
+    "time": "20分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "鸡腿肉",
+        "amount": "300g"
+      },
+      {
+        "name": "油酥花生米",
+        "amount": "50g"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "10个"
+      },
+      {
+        "name": "花椒",
+        "amount": "1小把"
+      },
+      {
+        "name": "葱白",
+        "amount": "2段"
+      },
+      {
+        "name": "蒜",
+        "amount": "3瓣"
+      },
+      {
+        "name": "姜",
+        "amount": "1小块"
+      },
+      {
+        "name": "醋",
+        "amount": "2勺"
+      },
+      {
+        "name": "白糖",
+        "amount": "2勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "淀粉",
+        "amount": "1勺"
+      }
+    ],
+    "steps": [
+      "鸡腿肉切1.5厘米丁，加料酒、生抽、淀粉抓匀腌制10分钟。",
+      "调碗汁：醋、白糖、生抽、淀粉、少许水调匀（荔枝口——酸甜带咸）。",
+      "锅烧热油，下鸡丁滑炒至变色盛出。",
+      "锅留底油，下干辣椒段、花椒小火煸出糊辣香，下葱白段、姜蒜片炒香。",
+      "倒回鸡丁，下花生米，淋入碗汁大火快速翻炒收汁即可。"
+    ],
+    "tips": "宫保鸡丁属糊辣荔枝口——先辣后甜酸，糖醋比例约1:1；花生米最后下保持酥脆；干辣椒煸到棕红出香但不能焦糊，否则发苦。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/101761223/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "yuxiang_rusi",
+    "name": "鱼香肉丝",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/yuxiang_rusi_cover.jpg",
+    "time": "20分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "猪里脊",
+        "amount": "250g"
+      },
+      {
+        "name": "木耳",
+        "amount": "一把(泡发)"
+      },
+      {
+        "name": "冬笋（或胡萝卜）",
+        "amount": "100g"
+      },
+      {
+        "name": "泡椒（剁碎）",
+        "amount": "2-3勺"
+      },
+      {
+        "name": "姜",
+        "amount": "1小块"
+      },
+      {
+        "name": "蒜",
+        "amount": "3瓣"
+      },
+      {
+        "name": "葱",
+        "amount": "1根"
+      },
+      {
+        "name": "醋",
+        "amount": "2勺"
+      },
+      {
+        "name": "白糖",
+        "amount": "2勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "1勺"
+      },
+      {
+        "name": "淀粉",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      }
+    ],
+    "steps": [
+      "里脊切丝，加料酒、生抽、淀粉抓匀腌制；木耳切丝、冬笋切丝、葱姜蒜切末。",
+      "调鱼香汁：醋、白糖、生抽、淀粉、少许水调匀。",
+      "锅烧热油，下肉丝滑炒至变色盛出。",
+      "锅留底油，下剁碎泡椒、姜蒜末小火炒出红油与酸香。",
+      "下木耳丝、笋丝翻炒，倒回肉丝，淋鱼香汁大火快速翻匀，撒葱花出锅。"
+    ],
+    "tips": "鱼香是川菜经典味型（咸甜酸辣兼备），“鱼香”来自泡椒+姜蒜葱的复合香气，并非真有鱼；泡椒是灵魂，糖和醋比例约1:1成就荔枝味。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/100352761/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "shuizhu_roupian",
+    "name": "水煮肉片",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/shuizhu_roupian_cover.jpg",
+    "time": "30分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "猪里脊",
+        "amount": "300g"
+      },
+      {
+        "name": "黄豆芽（或莴笋片）",
+        "amount": "200g"
+      },
+      {
+        "name": "郫县豆瓣酱",
+        "amount": "2勺"
+      },
+      {
+        "name": "干辣椒",
+        "amount": "一把"
+      },
+      {
+        "name": "花椒",
+        "amount": "一把"
+      },
+      {
+        "name": "姜",
+        "amount": "1块"
+      },
+      {
+        "name": "蒜",
+        "amount": "5瓣"
+      },
+      {
+        "name": "蛋清",
+        "amount": "1个"
+      },
+      {
+        "name": "淀粉",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "食用油",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "里脊切薄片，加蛋清、淀粉、料酒、少许盐抓匀腌制10分钟。",
+      "蔬菜（豆芽/莴笋）焯水断生，铺碗底垫底。",
+      "锅烧热油，下豆瓣酱、姜蒜末炒出红油，加水烧开成红汤，加盐调味。",
+      "逐片下肉片滑散，煮约1分钟至变白，连汤倒入碗中。",
+      "肉片上铺干辣椒段和花椒，另起锅烧滚油浇上激出麻辣香气即可。"
+    ],
+    "tips": "与水煮鱼同属水煮系列，底料都是豆瓣红汤+滚油激辣；肉片嫩滑靠蛋清淀粉上浆，下锅后不宜久煮；蔬菜垫底既能吸味又能解腻。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104275022/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
+  },
+  {
+    "id": "fuqi_feipian",
+    "name": "夫妻肺片",
+    "category": "川菜",
+    "cover": "https://cyongch.github.io/recipes/images/fuqi_feipian_cover.jpg",
+    "time": "约60分钟（含卤制）",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "牛头皮/牛心/牛舌/牛肚/牛肉",
+        "amount": "共约500g"
+      },
+      {
+        "name": "卤料（八角、桂皮、香叶、草果、花椒）",
+        "amount": "适量"
+      },
+      {
+        "name": "红油辣子",
+        "amount": "3-4勺"
+      },
+      {
+        "name": "花椒粉",
+        "amount": "1勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "2勺"
+      },
+      {
+        "name": "醋",
+        "amount": "1勺"
+      },
+      {
+        "name": "白糖",
+        "amount": "半勺"
+      },
+      {
+        "name": "熟芝麻",
+        "amount": "1勺"
+      },
+      {
+        "name": "香菜",
+        "amount": "适量"
+      },
+      {
+        "name": "盐",
+        "amount": "适量"
+      }
+    ],
+    "steps": [
+      "牛杂（牛肚、牛心、牛舌、牛肉等）洗净，冷水下锅加卤料包、姜、料酒卤煮约40分钟至熟透，捞出晾凉。",
+      "将卤好的牛杂切成均匀的薄片，码入盘中。",
+      "调红油汁：红油辣子、花椒粉、生抽、醋、白糖、少许卤汤、盐调匀。",
+      "将红油汁淋在肉片上，撒熟芝麻和香菜段拌匀即可。"
+    ],
+    "tips": "夫妻肺片讲究卤香与红油并重——卤要入味、红油要香而不燥；家庭版可直接买现成卤牛杂简化。花椒粉与红油是麻辣鲜香的来源，芝麻香菜增香点缀。传统并无肺，因创始人夫妇得名。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/103808601/"
+    },
+    "favorite": false,
+    "date": "2026-10-15"
   }
 ]
