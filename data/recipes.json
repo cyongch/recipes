@@ -2430,5 +2430,364 @@
     },
     "favorite": false,
     "date": "2026-10-19"
+  },
+  {
+    "id": "hongshu_kao",
+    "name": "微波烤红薯",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/hongshu_kao_cover.jpg",
+    "time": "12分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "红薯",
+        "amount": "2-3个（每个200-300g）"
+      },
+      {
+        "name": "厨房纸",
+        "amount": "适量"
+      },
+      {
+        "name": "水",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "红薯洗净表面泥土，用叉子或牙签在表面均匀扎10-15个深约1-2cm的小孔（排气防爆，关键步骤）。",
+      "取厨房纸将红薯整根包裹，浸湿后拧掉多余水分，留一点缝隙透气。",
+      "红薯放在微波炉玻璃转盘上，高火先加热5分钟。",
+      "戴隔热手套取出翻面，再高火加热3-4分钟。",
+      "用筷子戳红薯最粗处，能轻松戳透、无硬芯即熟；若仍硬追加1-2分钟。",
+      "取出静置2分钟让余热焖透，即可食用。"
+    ],
+    "tips": "①必须扎孔，否则内部蒸汽压力过大可能爆裂弄脏炉腔。②湿厨房纸包裹能保湿，口感更接近炭烤而非干硬。③时间按红薯大小与微波炉功率（700-1000W）微调；熟后的红薯因水分蒸发会变轻，也可凭手感判断。④忌用锡纸包裹（金属会反射微波、产生火花）。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104191592/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "zhengdan_geng",
+    "name": "微波蒸蛋羹",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/zhengdan_geng_cover.jpg",
+    "time": "6分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "鸡蛋",
+        "amount": "2个"
+      },
+      {
+        "name": "温水",
+        "amount": "150ml（约蛋液1.5倍）"
+      },
+      {
+        "name": "盐",
+        "amount": "1g"
+      },
+      {
+        "name": "香油",
+        "amount": "几滴"
+      }
+    ],
+    "steps": [
+      "鸡蛋打入碗中充分打散，至看不到蛋清块。",
+      "加入30-40℃温水（约蛋液1.5倍），加盐搅匀；忌用冷水或热水。",
+      "用细筛网过滤1-2次，去除泡沫与未打散的蛋清，蛋羹更细腻。",
+      "倒入浅口微波碗，碗壁可薄刷一层油防粘；盖耐高温保鲜膜并扎5-8个小孔透气。",
+      "高火加热2-3分钟，转中火（或中低火）再加热1-2分钟。",
+      "表面基本凝固、牙签插入中心无蛋液带出即熟；关火焖2分钟，淋几滴香油。"
+    ],
+    "tips": "①蛋水比例1:1.5最嫩滑；温水温度别超40℃，过热会烫熟蛋液结块。②保鲜膜务必扎孔，否则蒸汽鼓胀可能破裂污染蛋羹。③微波加热不均，宁短勿长，过头会起蜂窝变老。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/100444900/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "zhuyumi",
+    "name": "微波煮玉米",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/zhuyumi_cover.jpg",
+    "time": "6分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "玉米",
+        "amount": "2根（带皮）"
+      },
+      {
+        "name": "水",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "玉米保留外皮，冲洗干净，表皮留少许水分。",
+      "直接放入微波炉，高火加热4分钟。",
+      "取出翻面，再高火加热2分钟。",
+      "出炉剥去外皮即可食用，香甜多汁。"
+    ],
+    "tips": "①带皮加热能锁住玉米本身的甜度与水分，比水煮更省事。②也可去皮切段装碗、加没过食材少许水、加盖高火5-6分钟。③时间随玉米大小与功率微调，捏着软了就熟。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/102240302/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "mubai_dangao",
+    "name": "微波炉马克杯蛋糕",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/mubai_dangao_cover.jpg",
+    "time": "3分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "低筋面粉",
+        "amount": "4勺"
+      },
+      {
+        "name": "细砂糖",
+        "amount": "2勺"
+      },
+      {
+        "name": "鸡蛋",
+        "amount": "1个"
+      },
+      {
+        "name": "牛奶",
+        "amount": "3勺"
+      },
+      {
+        "name": "食用油",
+        "amount": "1勺"
+      },
+      {
+        "name": "可可粉",
+        "amount": "1勺（可选）"
+      }
+    ],
+    "steps": [
+      "取一个微波专用马克杯，打入鸡蛋，加细砂糖搅匀。",
+      "加入低筋面粉、牛奶、食用油（做巧克力味加可可粉），拌成无颗粒的顺滑面糊。",
+      "杯口盖一层耐高温保鲜膜并扎几个小孔透气。",
+      "高火加热90秒-2分钟，蛋糕膨胀、表面基本凝固、中心仅轻微晃动即停。",
+      "关火焖1分钟定型，稍凉即可享用（现做现吃口感最佳）。"
+    ],
+    "tips": "①必须用低筋面粉或蛋糕预拌粉，高筋面粉会起筋变硬。②容器务必是微波专用陶瓷/玻璃/PP5，忌金属与普通塑料。③保鲜膜扎孔、加热宁短勿长，过头会干硬开裂。④可加水果丁、巧克力豆增添风味。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/106714413/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "qingzheng_yu",
+    "name": "微波清蒸鱼",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/qingzheng_yu_cover.jpg",
+    "time": "8分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "鱼（黄鱼/鲈鱼）",
+        "amount": "1条"
+      },
+      {
+        "name": "姜丝",
+        "amount": "适量"
+      },
+      {
+        "name": "料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "蒸鱼豉油",
+        "amount": "2勺"
+      },
+      {
+        "name": "葱丝",
+        "amount": "适量"
+      },
+      {
+        "name": "油",
+        "amount": "1勺"
+      }
+    ],
+    "steps": [
+      "鱼洗净，尽量去除腹腔黑膜，两面各划几刀。",
+      "鱼身抹少许料酒、盐、油，可薄薄抹一层生粉，静置10分钟去腥。",
+      "盘中加少许水，放上鱼，加盖（或覆保鲜膜扎孔，留缝）。",
+      "高火加热约8分钟（视鱼的大小与厚度调整）。",
+      "取出倒掉盘中水，淋蒸鱼豉油，铺上葱丝。",
+      "另起锅烧热1勺油，浇在葱丝上激出香味即可。"
+    ],
+    "tips": "①加盖留缝形成蒸汽环境，鱼肉更嫩；用保鲜膜替代盖子记得扎孔。②时间按鱼重与微波炉功率微调，宁可分段加热观察。③鱼本身含水，盘底加少许水即可，不必没过鱼。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/106655348/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "suanrong_paigu",
+    "name": "微波蒜蓉蒸排骨",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/suanrong_paigu_cover.jpg",
+    "time": "15分钟",
+    "difficulty": "中等",
+    "ingredients": [
+      {
+        "name": "排骨",
+        "amount": "500g"
+      },
+      {
+        "name": "蒜",
+        "amount": "1整头"
+      },
+      {
+        "name": "豆豉",
+        "amount": "1勺"
+      },
+      {
+        "name": "生抽",
+        "amount": "2勺"
+      },
+      {
+        "name": "蚝油",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "糖",
+        "amount": "1小勺"
+      },
+      {
+        "name": "淀粉",
+        "amount": "1勺"
+      },
+      {
+        "name": "盐",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "排骨剁小块，冷水浸泡出血水，沥干并用厨房纸吸干表面水分。",
+      "蒜、姜剁末，小米辣切圈；碗中放豆豉碎、蒜末、姜末、小米辣，淋1勺热油激香。",
+      "加入生抽、蚝油、料酒、糖、盐调成蒜蓉酱。",
+      "蒜蓉酱倒入排骨抓拌均匀，加1勺淀粉再次抓匀锁水，最后淋油封住水分，腌20分钟。",
+      "排骨平铺在微波盘上，不要堆叠（避免受热不均）。",
+      "加盖高火加热约13分钟，出炉撒葱花即可。"
+    ],
+    "tips": "①排骨务必平铺不堆叠，否则中间蒸不熟。②加盖锁水，微波做出的排骨比明火更嫩。③不同功率时间微调，分段观察更稳妥。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/106438976/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "shuizhu_xia",
+    "name": "微波水煮虾",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/shuizhu_xia_cover.jpg",
+    "time": "5分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "大虾",
+        "amount": "500g"
+      },
+      {
+        "name": "葱姜",
+        "amount": "适量"
+      },
+      {
+        "name": "黄酒/料酒",
+        "amount": "2勺"
+      },
+      {
+        "name": "盐",
+        "amount": "少许"
+      }
+    ],
+    "steps": [
+      "大虾洗净，剪去长须。",
+      "虾与葱姜、黄酒（或料酒）、少许盐拌匀。",
+      "放入深微波器皿，加盖（留缝）。",
+      "高火加热5分钟，不加一滴水，凭虾自身水分与黄酒蒸汽即可熟透。",
+      "出锅蘸生抽或蒜蓉酱油食用。"
+    ],
+    "tips": "①加盖保留蒸汽是关键，虾变红、身体卷曲即熟，过久肉质发柴。②不加水靠自身汁水蒸熟，鲜甜弹牙，是微波炉做海鲜的强项。③时间随虾量与功率微调。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104711316/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
+  },
+  {
+    "id": "kao_jichi",
+    "name": "微波烤鸡翅",
+    "category": "微波料理",
+    "cover": "https://cyongch.github.io/recipes/images/kao_jichi_cover.jpg",
+    "time": "12分钟",
+    "difficulty": "简单",
+    "ingredients": [
+      {
+        "name": "鸡翅中",
+        "amount": "8-10个"
+      },
+      {
+        "name": "生抽",
+        "amount": "2勺"
+      },
+      {
+        "name": "老抽",
+        "amount": "1勺"
+      },
+      {
+        "name": "料酒",
+        "amount": "1勺"
+      },
+      {
+        "name": "蜂蜜",
+        "amount": "1勺"
+      },
+      {
+        "name": "蒜末",
+        "amount": "适量"
+      },
+      {
+        "name": "孜然/辣椒粉",
+        "amount": "可选"
+      }
+    ],
+    "steps": [
+      "鸡翅中两面各划两刀，方便入味。",
+      "生抽、老抽、料酒、蒜末调成腌料，与鸡翅抓匀腌制30分钟。",
+      "鸡翅平铺在微波盘，高火加热5分钟。",
+      "取出翻面，刷一层蜂蜜，再高火加热3-4分钟。",
+      "出炉撒上孜然粉、辣椒粉或白芝麻即可。"
+    ],
+    "tips": "①划刀更入味，中途翻面受热均匀。②喜焦香口感可用带光波/烧烤组合模式的机型，上色更佳。③时间按鸡翅量与功率微调，避免烤干。",
+    "source": {
+      "name": "下厨房",
+      "url": "https://m.xiachufang.com/recipe/104763644/"
+    },
+    "favorite": false,
+    "date": "2026-10-29"
   }
 ]
